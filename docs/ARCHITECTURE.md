@@ -4,6 +4,12 @@
 
 core는 image/screen 입력 의미·검증·진단·deterministic render의 권위다. CLI/Studio/MCP는 caller/transport이며 domain 규칙을 독립적으로 재정의하지 않는다. Codex adapter는 구독을 통한 외부 실행·파일 admission·산출물 게시를 책임진다. CLI는 제품 binary의 composition root이며 외부 Rust caller는 자신이 사용하는 공개 library를 구성한다.
 
+`agent-contract`는 독립 source에 포함한 순수 계약이다. compiler outcome·진단·
+semantic edit receipt와 외부 host의 provider 값·한도를 단일 원본으로 제공한다.
+core는 dependency-free 기본 feature를 사용한다. serde/schema는 consumer가 명시적으로
+선택한다. 검증된 refinement의 계산·PNG admission·승인·후보 상태는 각 domain/adapter에
+남는다. [공통 계약](../crates/agent-contract/README.md)의 범위와 출처를 따른다.
+
 ```text
 CLI / Studio / MCP / Rust host → image/interview core → compilation / diagnostics
 CLI screen / Rust host        → screen core          → handoff

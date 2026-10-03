@@ -1,5 +1,6 @@
 [workspace]
 members = [
+  "crates/agent-contract",
   "crates/promptgen-core",
   "crates/promptgen-codex",
   "crates/promptgen-web",

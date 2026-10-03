@@ -833,9 +833,10 @@ fn emit_schema(options: SchemaOptions) -> Result<u8, CliError> {
         "image" => image_schema(),
         "interview" => interview_schema(),
         "compilation" => compilation_schema(),
+        "shared-contract" => agent_contract::schema::catalog_value(),
         target => {
             return Err(CliError::usage(format!(
-                "unknown schema target {target:?}; expected image, interview, or compilation"
+                "unknown schema target {target:?}; expected image, interview, compilation, or shared-contract"
             )));
         }
     };
@@ -1284,7 +1285,7 @@ impl fmt::Display for CliError {
 
 fn print_help() {
     println!(
-        "promptgen {}\n\nUSAGE:\n  promptgen <COMMAND> [OPTIONS]\n\nCOMMANDS:\n  screen        compile a typed screen design and bounded UpAgent handoff\n  image         compile an image prompt or execute it with Codex image generation\n  interview     ask only for missing image contract fields and compile when complete\n  serve         run the loopback-only image Studio\n  mcp           expose the stateless image MCP compiler over stdio or Streamable HTTP\n  schema        print image/interview/compilation JSON Schema\n  catalog       list the six representative image outcomes\n  lut-presets   list resolved photographic LUT profiles\n  version       print the version\n\nRun `promptgen <COMMAND> --help` for command options.",
+        "promptgen {}\n\nUSAGE:\n  promptgen <COMMAND> [OPTIONS]\n\nCOMMANDS:\n  screen        compile a typed screen design and bounded UpAgent handoff\n  image         compile an image prompt or execute it with Codex image generation\n  interview     ask only for missing image contract fields and compile when complete\n  serve         run the loopback-only image Studio\n  mcp           expose the stateless image MCP compiler over stdio or Streamable HTTP\n  schema        print image/interview/compilation/shared-contract schemas\n  catalog       list the six representative image outcomes\n  lut-presets   list resolved photographic LUT profiles\n  version       print the version\n\nRun `promptgen <COMMAND> --help` for command options.",
         env!("CARGO_PKG_VERSION")
     );
 }
@@ -1306,7 +1307,9 @@ fn print_catalog_help() {
 }
 
 fn print_schema_help() {
-    println!("USAGE: promptgen schema <image|interview|compilation> [--result FILE] [--force]");
+    println!(
+        "USAGE: promptgen schema <image|interview|compilation|shared-contract> [--result FILE] [--force]"
+    );
 }
 
 fn print_serve_help() {

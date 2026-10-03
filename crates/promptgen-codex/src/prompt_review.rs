@@ -1,6 +1,7 @@
 use std::collections::BTreeSet;
 use std::fmt;
 
+use agent_contract::receipt::PromptRefinementEvidence;
 use promptgen_core::image::MAX_RENDERED_PROMPT_CHARS;
 use promptgen_core::image_artifact::sha256::{Sha256, hex};
 use promptgen_core::json::JsonValue;
@@ -12,15 +13,7 @@ const MAX_PROVIDER_LABEL_CHARS: usize = 80;
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct PromptRefinement {
-    provider: String,
-    model: String,
-    review_summary: String,
-    additions: Vec<String>,
-    source_prompt_sha256: String,
-    refined_prompt_sha256: String,
-    source_prompt_chars: u64,
-    refined_prompt_chars: u64,
-    prompt: String,
+    evidence: PromptRefinementEvidence,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -74,25 +67,27 @@ impl PromptRefinement {
         }
 
         Ok(Self {
-            provider,
-            model,
-            review_summary,
-            additions,
-            source_prompt_sha256: sha256_hex(source_prompt.as_bytes()),
-            refined_prompt_sha256: sha256_hex(prompt.as_bytes()),
-            source_prompt_chars: source_prompt.chars().count() as u64,
-            refined_prompt_chars: refined_prompt_chars as u64,
-            prompt,
+            evidence: PromptRefinementEvidence {
+                provider,
+                model,
+                review_summary,
+                additions,
+                source_prompt_sha256: sha256_hex(source_prompt.as_bytes()),
+                refined_prompt_sha256: sha256_hex(prompt.as_bytes()),
+                source_prompt_chars: source_prompt.chars().count() as u64,
+                refined_prompt_chars: refined_prompt_chars as u64,
+                prompt,
+            },
         })
     }
 
     pub fn validate_for(&self, source_prompt: &str) -> Result<(), PromptRefinementError> {
         let expected = Self::from_review(
             source_prompt,
-            self.provider.clone(),
-            self.model.clone(),
-            self.review_summary.clone(),
-            self.additions.clone(),
+            self.evidence.provider.clone(),
+            self.evidence.model.clone(),
+            self.evidence.review_summary.clone(),
+            self.evidence.additions.clone(),
         )?;
         if &expected == self {
             Ok(())
@@ -104,68 +99,47 @@ impl PromptRefinement {
     }
 
     pub fn provider(&self) -> &str {
-        &self.provider
+        &self.evidence.provider
     }
 
     pub fn model(&self) -> &str {
-        &self.model
+        &self.evidence.model
     }
 
     pub fn review_summary(&self) -> &str {
-        &self.review_summary
+        &self.evidence.review_summary
     }
 
     pub fn additions(&self) -> &[String] {
-        &self.additions
+        &self.evidence.additions
     }
 
     pub fn source_prompt_sha256(&self) -> &str {
-        &self.source_prompt_sha256
+        &self.evidence.source_prompt_sha256
     }
 
     pub fn refined_prompt_sha256(&self) -> &str {
-        &self.refined_prompt_sha256
+        &self.evidence.refined_prompt_sha256
     }
 
     pub const fn source_prompt_chars(&self) -> u64 {
-        self.source_prompt_chars
+        self.evidence.source_prompt_chars
     }
 
     pub const fn refined_prompt_chars(&self) -> u64 {
-        self.refined_prompt_chars
+        self.evidence.refined_prompt_chars
     }
 
     pub fn prompt(&self) -> &str {
-        &self.prompt
+        &self.evidence.prompt
+    }
+
+    pub fn evidence(&self) -> PromptRefinementEvidence {
+        self.evidence.clone()
     }
 
     pub fn to_json(&self) -> JsonValue {
-        JsonValue::object([
-            ("additions", JsonValue::strings(&self.additions)),
-            ("model", JsonValue::from(self.model.clone())),
-            ("provider", JsonValue::from(self.provider.clone())),
-            ("prompt", JsonValue::from(self.prompt.clone())),
-            (
-                "refined_prompt_chars",
-                JsonValue::from(self.refined_prompt_chars),
-            ),
-            (
-                "refined_prompt_sha256",
-                JsonValue::from(self.refined_prompt_sha256.clone()),
-            ),
-            (
-                "review_summary",
-                JsonValue::from(self.review_summary.clone()),
-            ),
-            (
-                "source_prompt_chars",
-                JsonValue::from(self.source_prompt_chars),
-            ),
-            (
-                "source_prompt_sha256",
-                JsonValue::from(self.source_prompt_sha256.clone()),
-            ),
-        ])
+        self.evidence.to_json()
     }
 }
 

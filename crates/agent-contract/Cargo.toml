@@ -1,0 +1,21 @@
+[package]
+name = "agent-contract"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.97"
+license = "Apache-2.0 AND BSD-2-Clause"
+description = "Shared, pure model and prompt compilation contracts"
+publish = false
+
+[features]
+default = []
+serde = ["dep:serde", "dep:serde_json"]
+schema = ["serde", "dep:schemars"]
+
+[dependencies]
+serde = { version = "1", features = ["derive"], optional = true }
+serde_json = { version = "1", optional = true }
+schemars = { version = "=0.8.22", optional = true }
+
+[lints]
+workspace = true

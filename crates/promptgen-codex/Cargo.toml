@@ -7,6 +7,7 @@ license.workspace = true
 description = "Codex image generation process and artifact adapter"
 
 [dependencies]
+agent-contract = { version = "0.1.0", path = "../agent-contract", default-features = false }
 promptgen-core = { path = "../promptgen-core" }
 
 [lib]

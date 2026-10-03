@@ -7,6 +7,11 @@ maintained source tree에 대한 `./scripts/verify.sh` 결과다.
 
 ## 구현 및 실제 연결
 
+- `agent-contract`는 공통 compiler outcome·진단·semantic receipt와 provider 타입의
+  단일 source다. 기본 feature는 std-only이며 runtime/I/O/인증을 의존하지 않는다.
+  UpAgent와 Vergerail이 같은 타입을 직접 사용한다. `schema shared-contract`로 공통
+  카탈로그를 출력한다. v5 compiler wire·Studio 결과 형식은 보존한다.
+
 - core는 strict typed image/screen request를 검증하고 deterministic prompt와 진단을
   만든다. `prompt-only`는 provider-free compile이다.
 - `luna-refine`과 `codex-imagegen`은 로그인된 ChatGPT 구독을 쓰는 Codex CLI만 사용한다.

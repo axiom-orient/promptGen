@@ -9,5 +9,8 @@ description = "Pure deterministic prompt compilation domain"
 [lib]
 path = "src/lib.rs"
 
+[dependencies]
+agent-contract = { version = "0.1.0", path = "../agent-contract", default-features = false }
+
 [lints]
 workspace = true

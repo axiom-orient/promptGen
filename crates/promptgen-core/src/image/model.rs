@@ -1217,61 +1217,7 @@ impl ImageConstraints {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum ImageDetail {
-    Auto,
-    Low,
-    Medium,
-    High,
-}
-
-impl ImageDetail {
-    fn parse(value: &str, path: &str) -> Result<Self, DecodeError> {
-        match value {
-            "auto" => Ok(Self::Auto),
-            "low" => Ok(Self::Low),
-            "medium" => Ok(Self::Medium),
-            "high" => Ok(Self::High),
-            _ => Err(DecodeError::new(path, "expected auto/low/medium/high")),
-        }
-    }
-
-    pub const fn as_str(self) -> &'static str {
-        match self {
-            Self::Auto => "auto",
-            Self::Low => "low",
-            Self::Medium => "medium",
-            Self::High => "high",
-        }
-    }
-}
-
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum BackgroundMode {
-    Auto,
-    Opaque,
-}
-
-impl BackgroundMode {
-    fn parse(value: &str, path: &str) -> Result<Self, DecodeError> {
-        match value {
-            "auto" => Ok(Self::Auto),
-            "opaque" => Ok(Self::Opaque),
-            "transparent" => Err(DecodeError::new(
-                path,
-                "this product publishes opaque PNGs; transparent output is outside its artifact contract",
-            )),
-            _ => Err(DecodeError::new(path, "expected auto or opaque")),
-        }
-    }
-
-    pub const fn as_str(self) -> &'static str {
-        match self {
-            Self::Auto => "auto",
-            Self::Opaque => "opaque",
-        }
-    }
-}
+pub use agent_contract::compilation::{BackgroundMode, ImageDetail};
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct ImageDeliveryContract {

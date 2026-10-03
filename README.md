@@ -12,6 +12,10 @@ cargo build --release -p promptgen-cli --locked --offline
 
 Rust 1.97.1과 lockfile의 dependency cache가 필요하다. 처음 빌드할 때는 `cargo fetch --locked`로 cache를 준비한다. [CLI 계약](crates/promptgen-cli/README.md), [MCP 연결](docs/MCP.md), [화면 가이드](docs/SCREEN_PROMPT_PLAYBOOK.md)를 참고한다.
 
+[agent-contract](crates/agent-contract/README.md)는 UpAgent·Vergerail과 공유하는 순수 타입·
+검증·스키마 라이브러리다. 독립 PromptGen source에 포함하며 UpAgent runtime을 의존하지
+않는다. `promptgen schema shared-contract`로 공통 계약을 조회한다.
+
 ## 이미지 작업
 
 Studio에서 요청을 쓰면 필요한 결정만 확인하고 실제 프롬프트를 바로 보여준다. `/travel-journal /scrapbook` 등 [23개 시각 어휘](docs/IMAGE_PROMPT_RESEARCH.md)는 명시적인 시각 조건으로 풀어 쓴다. 여섯 결과물 유형과 세부 프로필을 사용하며 `travel_journal`은 사진·종이·제공 문구·사실 보존을 구분한다.

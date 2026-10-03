@@ -122,261 +122,10 @@ impl LunaReviewConfig {
     }
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub struct CodexExecutionReceipt {
-    pub backend: String,
-    pub task_mode: String,
-    pub backend_profile: String,
-    pub requested_detail: String,
-    pub reference_sha256: Option<String>,
-    pub reference_bytes: Option<u64>,
-    pub codex_version: String,
-    pub codex_binary_sha256: Option<String>,
-    pub event_contract: String,
-    pub thread_id: String,
-    pub image_call_id: String,
-    pub source_artifact: PathBuf,
-    pub output_artifact: PathBuf,
-    pub sha256: String,
-    pub width: u32,
-    pub height: u32,
-    pub source_width: u32,
-    pub source_height: u32,
-    pub dimensions_normalized: bool,
-    pub started_unix_ms: u64,
-    pub finished_unix_ms: u64,
-    pub process_exit_code: i32,
-    pub compiled_prompt_sha256: String,
-    pub compiled_prompt_chars: u64,
-    pub executed_prompt_sha256: String,
-    pub executed_prompt_chars: u64,
-    pub prompt_refinement: PromptRefinement,
-    pub fidelity_checks: Vec<FidelityCheck>,
-    pub control_notes: Vec<String>,
-}
-
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub struct SubjectCountCheck {
-    pub id: String,
-    pub expected: u16,
-    pub observed: u16,
-    pub evidence: String,
-    pub instances: Vec<VisibleInstance>,
-}
-
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub struct VisibleInstance {
-    pub x_percent: u8,
-    pub y_percent: u8,
-    pub evidence: String,
-}
-
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub struct TextFidelityCheck {
-    pub id: String,
-    pub exact: bool,
-    pub observed_text: String,
-    pub evidence: String,
-}
-
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub struct TextSeparatorCheck {
-    pub id: String,
-    pub expected_per_line: u8,
-    pub observed_per_line: Vec<u8>,
-    pub proven: bool,
-    pub evidence: String,
-}
-
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub struct FidelityCheck {
-    pub candidate_sha256: String,
-    pub pass: bool,
-    pub summary: String,
-    pub violations: Vec<String>,
-    pub repair_instruction: String,
-    pub subject_counts: Vec<SubjectCountCheck>,
-    pub text_checks: Vec<TextFidelityCheck>,
-    pub text_separator_checks: Vec<TextSeparatorCheck>,
-}
-
-impl FidelityCheck {
-    fn to_json(&self) -> JsonValue {
-        JsonValue::object([
-            (
-                "candidate_sha256",
-                JsonValue::from(self.candidate_sha256.clone()),
-            ),
-            ("pass", JsonValue::from(self.pass)),
-            (
-                "text_separator_checks",
-                JsonValue::array(self.text_separator_checks.iter().map(|check| {
-                    JsonValue::object([
-                        ("id", JsonValue::from(check.id.clone())),
-                        (
-                            "expected_per_line",
-                            JsonValue::from(u64::from(check.expected_per_line)),
-                        ),
-                        (
-                            "observed_per_line",
-                            JsonValue::array(
-                                check
-                                    .observed_per_line
-                                    .iter()
-                                    .map(|count| JsonValue::from(u64::from(*count))),
-                            ),
-                        ),
-                        ("proven", JsonValue::from(check.proven)),
-                        ("evidence", JsonValue::from(check.evidence.clone())),
-                    ])
-                })),
-            ),
-            (
-                "repair_instruction",
-                JsonValue::from(self.repair_instruction.clone()),
-            ),
-            (
-                "subject_counts",
-                JsonValue::array(self.subject_counts.iter().map(|check| {
-                    JsonValue::object([
-                        ("evidence", JsonValue::from(check.evidence.clone())),
-                        ("expected", JsonValue::from(u64::from(check.expected))),
-                        ("id", JsonValue::from(check.id.clone())),
-                        (
-                            "instances",
-                            JsonValue::array(check.instances.iter().map(|instance| {
-                                JsonValue::object([
-                                    ("evidence", JsonValue::from(instance.evidence.clone())),
-                                    ("x_percent", JsonValue::from(u64::from(instance.x_percent))),
-                                    ("y_percent", JsonValue::from(u64::from(instance.y_percent))),
-                                ])
-                            })),
-                        ),
-                        ("observed", JsonValue::from(u64::from(check.observed))),
-                    ])
-                })),
-            ),
-            ("summary", JsonValue::from(self.summary.clone())),
-            (
-                "text_checks",
-                JsonValue::array(self.text_checks.iter().map(|check| {
-                    JsonValue::object([
-                        ("evidence", JsonValue::from(check.evidence.clone())),
-                        ("exact", JsonValue::from(check.exact)),
-                        ("id", JsonValue::from(check.id.clone())),
-                        (
-                            "observed_text",
-                            JsonValue::from(check.observed_text.clone()),
-                        ),
-                    ])
-                })),
-            ),
-            ("violations", JsonValue::strings(&self.violations)),
-        ])
-    }
-}
-
-impl CodexExecutionReceipt {
-    pub fn to_json(&self) -> JsonValue {
-        JsonValue::object([
-            ("backend", JsonValue::from(self.backend.clone())),
-            ("authentication", JsonValue::from("chatgpt-subscription")),
-            (
-                "promptgen_version",
-                JsonValue::from(env!("CARGO_PKG_VERSION")),
-            ),
-            ("agent_model", JsonValue::from(LUNA_MODEL)),
-            ("task_mode", JsonValue::from(self.task_mode.clone())),
-            (
-                "backend_profile",
-                JsonValue::from(self.backend_profile.clone()),
-            ),
-            (
-                "requested_detail",
-                JsonValue::from(self.requested_detail.clone()),
-            ),
-            ("observed_image_model", JsonValue::Null),
-            (
-                "reference_sha256",
-                self.reference_sha256
-                    .clone()
-                    .map(JsonValue::from)
-                    .unwrap_or(JsonValue::Null),
-            ),
-            (
-                "reference_bytes",
-                self.reference_bytes
-                    .map(JsonValue::from)
-                    .unwrap_or(JsonValue::Null),
-            ),
-            ("codex_version", JsonValue::from(self.codex_version.clone())),
-            (
-                "codex_binary_sha256",
-                self.codex_binary_sha256
-                    .clone()
-                    .map(JsonValue::from)
-                    .unwrap_or(JsonValue::Null),
-            ),
-            (
-                "compiled_prompt_chars",
-                JsonValue::from(self.compiled_prompt_chars),
-            ),
-            (
-                "compiled_prompt_sha256",
-                JsonValue::from(self.compiled_prompt_sha256.clone()),
-            ),
-            (
-                "executed_prompt_chars",
-                JsonValue::from(self.executed_prompt_chars),
-            ),
-            (
-                "executed_prompt_sha256",
-                JsonValue::from(self.executed_prompt_sha256.clone()),
-            ),
-            ("control_notes", JsonValue::strings(&self.control_notes)),
-            (
-                "event_contract",
-                JsonValue::from(self.event_contract.clone()),
-            ),
-            (
-                "dimensions_normalized",
-                JsonValue::from(self.dimensions_normalized),
-            ),
-            (
-                "fidelity_checks",
-                JsonValue::array(self.fidelity_checks.iter().map(FidelityCheck::to_json)),
-            ),
-            ("finished_unix_ms", JsonValue::from(self.finished_unix_ms)),
-            ("height", JsonValue::from(u64::from(self.height))),
-            ("image_call_id", JsonValue::from(self.image_call_id.clone())),
-            (
-                "output_artifact",
-                JsonValue::from(self.output_artifact.display().to_string()),
-            ),
-            (
-                "process_exit_code",
-                JsonValue::from(i64::from(self.process_exit_code)),
-            ),
-            ("prompt_refinement", self.prompt_refinement.to_json()),
-            ("sha256", JsonValue::from(self.sha256.clone())),
-            (
-                "source_artifact",
-                JsonValue::from(self.source_artifact.display().to_string()),
-            ),
-            (
-                "source_height",
-                JsonValue::from(u64::from(self.source_height)),
-            ),
-            (
-                "source_width",
-                JsonValue::from(u64::from(self.source_width)),
-            ),
-            ("started_unix_ms", JsonValue::from(self.started_unix_ms)),
-            ("thread_id", JsonValue::from(self.thread_id.clone())),
-            ("width", JsonValue::from(u64::from(self.width))),
-        ])
-    }
-}
+pub use agent_contract::receipt::{
+    FidelityCheck, SemanticEditReceipt as CodexExecutionReceipt, SubjectCountCheck,
+    TextFidelityCheck, TextSeparatorCheck, VisibleInstance,
+};
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct CodexExecutionError {
@@ -648,6 +397,10 @@ pub fn execute_image_generation(
 
     Ok(CodexExecutionReceipt {
         backend: "codex-imagegen".to_owned(),
+        authentication: "chatgpt-subscription".to_owned(),
+        promptgen_version: env!("CARGO_PKG_VERSION").to_owned(),
+        agent_model: LUNA_MODEL.to_owned(),
+        observed_image_model: None,
         task_mode: request.task_mode.as_str().to_owned(),
         backend_profile: request.output.backend.clone(),
         requested_detail: request.output.detail.as_str().to_owned(),
@@ -673,7 +426,7 @@ pub fn execute_image_generation(
         compiled_prompt_chars,
         executed_prompt_sha256,
         executed_prompt_chars,
-        prompt_refinement: refinement.clone(),
+        prompt_refinement: refinement.evidence(),
         fidelity_checks,
         control_notes: vec![
             format!(

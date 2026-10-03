@@ -11,6 +11,7 @@ name = "promptgen"
 path = "src/main.rs"
 
 [dependencies]
+agent-contract = { version = "0.1.0", path = "../agent-contract", features = ["schema"] }
 promptgen-core = { path = "../promptgen-core" }
 promptgen-codex = { path = "../promptgen-codex" }
 promptgen-mcp = { path = "../promptgen-mcp" }
