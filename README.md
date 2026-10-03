@@ -1,4 +1,4 @@
-# promptGen 4.0.0
+# promptGen 5.0.0
 
 이미지·화면 요구를 검증해 **명확한 프롬프트·진단·실행 계약**으로 만드는 Rust 컴파일러다. CLI, 로컬 이미지 Studio, MCP와 선택 이미지 실행 adapter를 제공한다.
 
@@ -20,7 +20,7 @@ Studio에서 요청을 쓰면 필요한 결정만 확인하고 실제 프롬프�
 
 - `prompt-only`: 결정적 컴파일. 외부 모델 호출 없음.
 - `luna-refine`: Codex CLI의 Luna 검토. 이미지 생성 없음.
-- `codex-imagegen`: Luna 검토 후 구독으로 생성 또는 단일 base PNG 편집. 편집은 `--reference-image FILE`이 필수다.
+- `codex-imagegen`: Luna 검토 후 구독으로 생성 또는 단일 base PNG 편집. 편집은 `--reference-image FILE`이 필수다. 한 작업에서 만들 후보 수는 `--max-fidelity-attempts 1..=4`로 제한할 수 있다. 실행 파일을 고정할 때는 `--codex-binary`와 `--codex-sha256`을 함께 지정하면 각 child 실행 전에 SHA-256을 확인하고 receipt에 기록한다.
 
 **인증은 로그인된 Codex CLI의 ChatGPT 구독만 사용한다. API key를 요청하거나 사용하지 않는다.**
 

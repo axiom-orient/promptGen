@@ -3,6 +3,29 @@ use crate::event_stream::as_string;
 use promptgen_core::image::{CanvasPlacement, compile_image_prompt};
 use promptgen_core::json::parse;
 
+#[cfg(unix)]
+#[test]
+fn pinned_codex_executable_hash_rejects_binary_drift() -> Result<(), Box<dyn std::error::Error>> {
+    use std::os::unix::fs::PermissionsExt;
+
+    let root = test_root("pinned-codex-identity");
+    let executable = root.join("codex-test-shim");
+    let original = b"#!/bin/sh\necho 'codex-cli identity-test'\n";
+    fs::write(&executable, original)?;
+    fs::set_permissions(&executable, fs::Permissions::from_mode(0o700))?;
+    let expected = sha256_hex(original);
+    assert_eq!(
+        verify_codex_binary_identity(&executable, Some(&expected))?,
+        Some(expected.clone())
+    );
+
+    fs::write(&executable, b"#!/bin/sh\necho 'different binary'\n")?;
+    let error = verify_codex_binary_identity(&executable, Some(&expected))
+        .expect_err("modified runtime must fail the source pin");
+    assert_eq!(error.code, "CODEX_BINARY_IDENTITY");
+    Ok(())
+}
+
 #[test]
 fn instruction_is_single_image_and_parameter_explicit() {
     let request = example_request();

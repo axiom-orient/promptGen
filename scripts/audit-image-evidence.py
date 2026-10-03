@@ -11,10 +11,22 @@ EVIDENCE = ROOT / "evals/dogfood/historical/1.4.0/image/image-evidence.json"
 ANALYSIS = ROOT / "evals/dogfood/historical/1.4.0/image/IMAGE_RESULT_ANALYSIS.md"
 CURRENT_POLICY = ROOT / "evals/dogfood/current/IMAGE_EVIDENCE_POLICY.md"
 PNG_SIGNATURE = b"\x89PNG\r\n\x1a\n"
+ARCHIVED_INPUTS = (EVIDENCE, ANALYSIS, CURRENT_POLICY)
 
 
 def fail(message: str) -> None:
     raise SystemExit(f"[FAIL] {message}")
+
+
+if not any(path.exists() for path in ARCHIVED_INPUTS):
+    print(
+        "[NOT_RUN] historical image evidence audit: archived evidence inputs "
+        "are absent; no evidence was reconstructed"
+    )
+    raise SystemExit(0)
+if not all(path.is_file() for path in ARCHIVED_INPUTS):
+    missing = [str(path.relative_to(ROOT)) for path in ARCHIVED_INPUTS if not path.is_file()]
+    fail("historical image evidence archive is incomplete: " + ", ".join(missing))
 
 
 def sha256(path: Path) -> str:

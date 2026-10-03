@@ -50,6 +50,7 @@ const MAX_ACTIVE_CONNECTIONS: usize = 32;
 pub struct WebConfig {
     pub bind: SocketAddr,
     pub codex_binary: PathBuf,
+    pub codex_binary_sha256: Option<String>,
     pub codex_home: PathBuf,
     pub output_dir: PathBuf,
     /// Directory holding `image_catalog.json` and `assets/`. Card PNGs are read from
@@ -65,6 +66,7 @@ impl Default for WebConfig {
         Self {
             bind: "127.0.0.1:4173".parse().expect("literal socket address"),
             codex_binary: PathBuf::from("codex"),
+            codex_binary_sha256: None,
             codex_home: default_codex_home(),
             output_dir: PathBuf::from("var/output"),
             catalog_dir: None,
@@ -856,6 +858,7 @@ fn handle_generate(request: &HttpRequest, state: &ServerState) -> Response {
         state.config.codex_binary.clone(),
         state.config.codex_home.clone(),
     );
+    luna_config.codex_binary_sha256 = state.config.codex_binary_sha256.clone();
     luna_config.timeout = state.config.request_timeout;
     let refinement = match review_image_prompt(compilation, image_request, &luna_config) {
         Ok(refinement) => refinement,
@@ -883,6 +886,7 @@ fn handle_generate(request: &HttpRequest, state: &ServerState) -> Response {
     let output_path = state.config.output_dir.join(&output_name);
     let config = CodexRunConfig {
         codex_binary: state.config.codex_binary.clone(),
+        codex_binary_sha256: state.config.codex_binary_sha256.clone(),
         codex_home: state.config.codex_home.clone(),
         output_path,
         timeout: state.config.request_timeout,

@@ -40,6 +40,74 @@ fn compiles_image_prompt_examples() {
 }
 
 #[test]
+fn fidelity_attempt_limit_is_bounded_and_scoped_to_codex_execution() {
+    let root = repository_root();
+    let input = root.join("examples/image-app-icon.json");
+    let invalid_limit = Command::new(binary())
+        .args(["image", "--input"])
+        .arg(&input)
+        .args(["--mode", "codex-imagegen", "--max-fidelity-attempts", "5"])
+        .output()
+        .unwrap();
+    assert_eq!(invalid_limit.status.code(), Some(2));
+    assert!(
+        String::from_utf8_lossy(&invalid_limit.stderr)
+            .contains("--max-fidelity-attempts must be an integer in 1..=4")
+    );
+
+    let prompt_only = Command::new(binary())
+        .args(["image", "--input"])
+        .arg(input)
+        .args(["--mode", "prompt-only", "--max-fidelity-attempts", "1"])
+        .output()
+        .unwrap();
+    assert_eq!(prompt_only.status.code(), Some(2));
+    assert!(
+        String::from_utf8_lossy(&prompt_only.stderr)
+            .contains("--max-fidelity-attempts is valid only with --mode codex-imagegen")
+    );
+}
+
+#[cfg(unix)]
+#[test]
+fn codex_binary_digest_mismatch_fails_before_review_or_image_dispatch() {
+    use std::os::unix::fs::PermissionsExt;
+
+    let root = test_root("codex-pin-before-dispatch");
+    let codex = root.join("codex-shim");
+    fs::write(
+        &codex,
+        b"#!/bin/sh\necho invoked >> \"$CODEX_HOME/invocations\"\n",
+    )
+    .unwrap();
+    fs::set_permissions(&codex, fs::Permissions::from_mode(0o700)).unwrap();
+    let codex_home = root.join("codex-home-must-not-be-created");
+    let image_output = root.join("output.png");
+    let result = root.join("receipt.json");
+    let wrong_sha256 = "0".repeat(64);
+    let output = Command::new(binary())
+        .args(["image", "--input"])
+        .arg(repository_root().join("examples/image-app-icon.json"))
+        .args(["--mode", "codex-imagegen", "--codex-binary"])
+        .arg(&codex)
+        .args(["--codex-sha256", wrong_sha256.as_str(), "--codex-home"])
+        .arg(&codex_home)
+        .arg("--image-output")
+        .arg(&image_output)
+        .arg("--result")
+        .arg(&result)
+        .output()
+        .unwrap();
+
+    assert_eq!(output.status.code(), Some(4));
+    assert!(String::from_utf8_lossy(&output.stderr).contains("CODEX_BINARY_IDENTITY"));
+    assert!(!codex_home.exists());
+    assert!(!image_output.exists());
+    assert!(!result.exists());
+    fs::remove_dir_all(root).unwrap();
+}
+
+#[test]
 fn strict_unknown_field_is_exit_three() {
     let root = test_root("unknown");
     let input = root.join("bad.json");

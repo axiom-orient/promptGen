@@ -32,6 +32,7 @@ const EVENT_LOG_LIMIT: u64 = 8 * 1024 * 1024;
 const STDERR_LOG_LIMIT: u64 = 1024 * 1024;
 const RESULT_JSON_LIMIT: u64 = 1024 * 1024;
 const VERSION_LOG_LIMIT: u64 = 64 * 1024;
+const CODEX_EXECUTABLE_MAX_BYTES: u64 = 512 * 1024 * 1024;
 const LUNA_REVIEW_RESULT_LIMIT: u64 = 64 * 1024;
 const LUNA_REVIEW_LOG_LIMIT: u64 = 16 * 1024;
 const CLOCK_TOLERANCE: Duration = Duration::from_secs(5);
@@ -67,6 +68,7 @@ pub fn inspect_png_bytes(bytes: &[u8]) -> Result<(u32, u32), String> {
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct CodexRunConfig {
     pub codex_binary: PathBuf,
+    pub codex_binary_sha256: Option<String>,
     pub codex_home: PathBuf,
     pub output_path: PathBuf,
     pub timeout: Duration,
@@ -85,6 +87,7 @@ impl CodexRunConfig {
     ) -> Self {
         Self {
             codex_binary: codex_binary.into(),
+            codex_binary_sha256: None,
             codex_home: codex_home.into(),
             output_path: output_path.into(),
             timeout: Duration::from_secs(240),
@@ -103,6 +106,7 @@ impl CodexRunConfig {
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct LunaReviewConfig {
     pub codex_binary: PathBuf,
+    pub codex_binary_sha256: Option<String>,
     pub codex_home: PathBuf,
     pub timeout: Duration,
 }
@@ -111,6 +115,7 @@ impl LunaReviewConfig {
     pub fn new(codex_binary: impl Into<PathBuf>, codex_home: impl Into<PathBuf>) -> Self {
         Self {
             codex_binary: codex_binary.into(),
+            codex_binary_sha256: None,
             codex_home: codex_home.into(),
             timeout: Duration::from_secs(120),
         }
@@ -126,6 +131,7 @@ pub struct CodexExecutionReceipt {
     pub reference_sha256: Option<String>,
     pub reference_bytes: Option<u64>,
     pub codex_version: String,
+    pub codex_binary_sha256: Option<String>,
     pub event_contract: String,
     pub thread_id: String,
     pub image_call_id: String,
@@ -305,6 +311,13 @@ impl CodexExecutionReceipt {
             ),
             ("codex_version", JsonValue::from(self.codex_version.clone())),
             (
+                "codex_binary_sha256",
+                self.codex_binary_sha256
+                    .clone()
+                    .map(JsonValue::from)
+                    .unwrap_or(JsonValue::Null),
+            ),
+            (
                 "compiled_prompt_chars",
                 JsonValue::from(self.compiled_prompt_chars),
             ),
@@ -410,6 +423,8 @@ pub fn execute_image_generation(
     refinement: &PromptRefinement,
     config: &CodexRunConfig,
 ) -> Result<CodexExecutionReceipt, CodexExecutionError> {
+    let codex_binary_sha256 =
+        verify_codex_binary_identity(&config.codex_binary, config.codex_binary_sha256.as_deref())?;
     validate_compilation(compilation)?;
     let compiled_prompt = compilation.prompt.as_deref().ok_or_else(|| {
         CodexExecutionError::new("CODEX_MISSING_PROMPT", "valid compilation has no prompt")
@@ -456,6 +471,7 @@ pub fn execute_image_generation(
         .timeout
         .max(Duration::from_secs(1))
         .min(Duration::from_secs(15));
+    verify_codex_binary_identity(&config.codex_binary, config.codex_binary_sha256.as_deref())?;
     let codex_version = probe_codex_version(&config.codex_binary, &working.path, probe_timeout)?;
     let stdout_path = working.path.join("events.jsonl");
     let stderr_path = working.path.join("stderr.log");
@@ -483,6 +499,7 @@ pub fn execute_image_generation(
     let started_at = SystemTime::now();
     let started_unix_ms = millis(started_at);
 
+    verify_codex_binary_identity(&config.codex_binary, config.codex_binary_sha256.as_deref())?;
     let mut command = isolated_codex_exec(&config.codex_binary);
     if let Some(reference) = &reference {
         command.arg("--image").arg(&reference.path);
@@ -637,6 +654,7 @@ pub fn execute_image_generation(
         reference_sha256: reference.as_ref().map(|value| value.sha256.clone()),
         reference_bytes: reference.as_ref().map(|value| value.bytes),
         codex_version,
+        codex_binary_sha256,
         event_contract,
         thread_id,
         image_call_id: call_id,
@@ -695,6 +713,7 @@ pub fn review_image_prompt(
     request: &ImagePromptRequest,
     config: &LunaReviewConfig,
 ) -> Result<PromptRefinement, CodexExecutionError> {
+    verify_codex_binary_identity(&config.codex_binary, config.codex_binary_sha256.as_deref())?;
     validate_compilation(compilation)?;
     let source_prompt = compilation.prompt.as_deref().ok_or_else(|| {
         CodexExecutionError::new("CODEX_MISSING_PROMPT", "valid compilation has no prompt")
@@ -719,6 +738,7 @@ pub fn review_image_prompt(
     let instruction_file =
         instruction_stdin_file(&working.path, "luna-review.instruction.txt", &instruction)?;
 
+    verify_codex_binary_identity(&config.codex_binary, config.codex_binary_sha256.as_deref())?;
     let mut command = isolated_codex_exec(&config.codex_binary);
     let mut child = OwnedChild::spawn(
         command
@@ -1289,6 +1309,7 @@ fn run_visual_gate_stage(
     working: &Path,
     config: &CodexRunConfig,
 ) -> Result<JsonValue, CodexExecutionError> {
+    verify_codex_binary_identity(&config.codex_binary, config.codex_binary_sha256.as_deref())?;
     let schema_path = working.join(format!("{label}.schema.json"));
     let result_path = working.join(format!("{label}.result.json"));
     let stdout_path = working.join(format!("{label}.events.jsonl"));
@@ -1454,6 +1475,7 @@ fn run_repair_generation(
         &format!("repair-{attempt}.instruction.txt"),
         &instruction,
     )?;
+    verify_codex_binary_identity(&config.codex_binary, config.codex_binary_sha256.as_deref())?;
     let mut command = isolated_codex_exec(&config.codex_binary);
     if let Some(reference) = &config.reference_image {
         command.arg("--image").arg(reference);
@@ -1646,6 +1668,130 @@ fn validate_existing_output(path: &Path, overwrite: bool) -> Result<(), CodexExe
         Err(error) => return Err(io_error("inspect output target", path, error)),
     }
     Ok(())
+}
+
+fn verify_codex_binary_identity(
+    binary: &Path,
+    expected_sha256: Option<&str>,
+) -> Result<Option<String>, CodexExecutionError> {
+    let Some(expected_sha256) = expected_sha256 else {
+        return Ok(None);
+    };
+    if !binary.is_absolute()
+        || expected_sha256.len() != 64
+        || !expected_sha256.bytes().all(|byte| byte.is_ascii_hexdigit())
+    {
+        return Err(CodexExecutionError::new(
+            "CODEX_BINARY_IDENTITY",
+            "pinned Codex requires an absolute executable path and SHA-256",
+        ));
+    }
+    let before = fs::symlink_metadata(binary)
+        .map_err(|error| io_error("inspect pinned Codex executable", binary, error))?;
+    if !before.file_type().is_file() || before.file_type().is_symlink() {
+        return Err(CodexExecutionError::new(
+            "CODEX_BINARY_IDENTITY",
+            "pinned Codex executable must be a regular non-symlink file",
+        ));
+    }
+    if before.len() == 0 || before.len() > CODEX_EXECUTABLE_MAX_BYTES {
+        return Err(CodexExecutionError::new(
+            "CODEX_BINARY_IDENTITY",
+            "pinned Codex executable is outside the configured size bound",
+        ));
+    }
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::PermissionsExt;
+        if before.permissions().mode() & 0o111 == 0 {
+            return Err(CodexExecutionError::new(
+                "CODEX_BINARY_IDENTITY",
+                "pinned Codex executable is not executable",
+            ));
+        }
+    }
+    let file = File::open(binary)
+        .map_err(|error| io_error("open pinned Codex executable", binary, error))?;
+    let opened = file
+        .metadata()
+        .map_err(|error| io_error("inspect opened Codex executable", binary, error))?;
+    if !opened.is_file() || opened.len() != before.len() {
+        return Err(CodexExecutionError::new(
+            "CODEX_BINARY_IDENTITY",
+            "pinned Codex executable changed while opening",
+        ));
+    }
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::MetadataExt;
+        if before.dev() != opened.dev() || before.ino() != opened.ino() {
+            return Err(CodexExecutionError::new(
+                "CODEX_BINARY_IDENTITY",
+                "pinned Codex executable identity changed while opening",
+            ));
+        }
+    }
+    let mut input = file.take(CODEX_EXECUTABLE_MAX_BYTES + 1);
+    let mut hasher = sha256::Sha256::new();
+    let mut buffer = [0_u8; 64 * 1024];
+    let mut total = 0_u64;
+    loop {
+        let count = input
+            .read(&mut buffer)
+            .map_err(|error| io_error("hash pinned Codex executable", binary, error))?;
+        if count == 0 {
+            break;
+        }
+        total = total.checked_add(count as u64).ok_or_else(|| {
+            CodexExecutionError::new(
+                "CODEX_BINARY_IDENTITY",
+                "pinned Codex executable size overflowed",
+            )
+        })?;
+        if total > CODEX_EXECUTABLE_MAX_BYTES {
+            return Err(CodexExecutionError::new(
+                "CODEX_BINARY_IDENTITY",
+                "pinned Codex executable exceeded its size bound while hashing",
+            ));
+        }
+        hasher.update(&buffer[..count]);
+    }
+    if total != opened.len() {
+        return Err(CodexExecutionError::new(
+            "CODEX_BINARY_IDENTITY",
+            "pinned Codex executable changed while hashing",
+        ));
+    }
+    let after = fs::symlink_metadata(binary)
+        .map_err(|error| io_error("recheck pinned Codex executable", binary, error))?;
+    if !after.file_type().is_file()
+        || after.file_type().is_symlink()
+        || after.len() != opened.len()
+        || after.modified().ok() != opened.modified().ok()
+    {
+        return Err(CodexExecutionError::new(
+            "CODEX_BINARY_IDENTITY",
+            "pinned Codex executable changed during identity verification",
+        ));
+    }
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::MetadataExt;
+        if opened.dev() != after.dev() || opened.ino() != after.ino() {
+            return Err(CodexExecutionError::new(
+                "CODEX_BINARY_IDENTITY",
+                "pinned Codex executable path changed during identity verification",
+            ));
+        }
+    }
+    let observed = sha256::hex(&hasher.finalize());
+    if !observed.eq_ignore_ascii_case(expected_sha256) {
+        return Err(CodexExecutionError::new(
+            "CODEX_BINARY_IDENTITY",
+            "pinned Codex executable digest mismatch",
+        ));
+    }
+    Ok(Some(observed))
 }
 
 fn probe_codex_version(

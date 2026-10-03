@@ -128,7 +128,9 @@ struct ImageOptions {
     image_output: Option<PathBuf>,
     reference_image: Option<PathBuf>,
     codex_binary: PathBuf,
+    codex_binary_sha256: Option<String>,
     codex_home: Option<PathBuf>,
+    max_fidelity_attempts: Option<u8>,
     timeout: Duration,
     artifact_wait: Duration,
 }
@@ -233,7 +235,9 @@ fn parse_image_options(mut cursor: ArgCursor) -> Result<ImageOptions, CliError> 
     let mut image_output = None;
     let mut reference_image = None;
     let mut codex_binary = PathBuf::from("codex");
+    let mut codex_binary_sha256 = None;
     let mut codex_home = None;
+    let mut max_fidelity_attempts = None;
     let mut timeout = Duration::from_secs(240);
     let mut artifact_wait = Duration::from_secs(30);
     let mut seen = BTreeSet::new();
@@ -271,9 +275,28 @@ fn parse_image_options(mut cursor: ArgCursor) -> Result<ImageOptions, CliError> 
                 claim_option(&mut seen, "--codex-binary")?;
                 codex_binary = PathBuf::from(cursor.required_value("--codex-binary")?);
             }
+            "--codex-sha256" => {
+                claim_option(&mut seen, "--codex-sha256")?;
+                codex_binary_sha256 = Some(cursor.required_value("--codex-sha256")?);
+            }
             "--codex-home" => {
                 claim_option(&mut seen, "--codex-home")?;
                 codex_home = Some(PathBuf::from(cursor.required_value("--codex-home")?));
+            }
+            "--max-fidelity-attempts" => {
+                claim_option(&mut seen, "--max-fidelity-attempts")?;
+                let value = cursor
+                    .required_value("--max-fidelity-attempts")?
+                    .parse::<u8>()
+                    .map_err(|_| {
+                        CliError::usage("--max-fidelity-attempts must be an integer in 1..=4")
+                    })?;
+                if !(1..=4).contains(&value) {
+                    return Err(CliError::usage(
+                        "--max-fidelity-attempts must be an integer in 1..=4",
+                    ));
+                }
+                max_fidelity_attempts = Some(value);
             }
             "--timeout-seconds" => {
                 claim_option(&mut seen, "--timeout-seconds")?;
@@ -304,7 +327,9 @@ fn parse_image_options(mut cursor: ArgCursor) -> Result<ImageOptions, CliError> 
         image_output,
         reference_image,
         codex_binary,
+        codex_binary_sha256,
         codex_home,
+        max_fidelity_attempts,
         timeout,
         artifact_wait,
     })
@@ -422,6 +447,10 @@ fn parse_serve_options(mut cursor: ArgCursor) -> Result<ServeOptions, CliError> 
             "--codex-binary" => {
                 claim_option(&mut seen, "--codex-binary")?;
                 config.codex_binary = PathBuf::from(cursor.required_value("--codex-binary")?);
+            }
+            "--codex-sha256" => {
+                claim_option(&mut seen, "--codex-sha256")?;
+                config.codex_binary_sha256 = Some(cursor.required_value("--codex-sha256")?);
             }
             "--codex-home" => {
                 claim_option(&mut seen, "--codex-home")?;
@@ -617,6 +646,16 @@ fn compile_image(options: ImageOptions) -> Result<u8, CliError> {
     }
     match options.mode {
         ImageMode::PromptOnly => {
+            if options.codex_binary_sha256.is_some() {
+                return Err(CliError::usage(
+                    "--codex-sha256 requires a Codex execution mode",
+                ));
+            }
+            if options.max_fidelity_attempts.is_some() {
+                return Err(CliError::usage(
+                    "--max-fidelity-attempts is valid only with --mode codex-imagegen",
+                ));
+            }
             if options.image_output.is_some() || options.reference_image.is_some() {
                 return Err(CliError::usage(
                     "--image-output and --reference-image require an image execution mode",
@@ -625,6 +664,11 @@ fn compile_image(options: ImageOptions) -> Result<u8, CliError> {
             emit_compilation(compilation, options.compile)
         }
         ImageMode::LunaRefine => {
+            if options.max_fidelity_attempts.is_some() {
+                return Err(CliError::usage(
+                    "--max-fidelity-attempts is valid only with --mode codex-imagegen",
+                ));
+            }
             if options.image_output.is_some() || options.reference_image.is_some() {
                 return Err(CliError::usage(
                     "--image-output and --reference-image are not valid with --mode luna-refine",
@@ -632,6 +676,7 @@ fn compile_image(options: ImageOptions) -> Result<u8, CliError> {
             }
             let codex_home = resolve_codex_home(options.codex_home)?;
             let mut config = LunaReviewConfig::new(options.codex_binary, codex_home);
+            config.codex_binary_sha256 = options.codex_binary_sha256;
             config.timeout = options.timeout;
             let refinement = review_image_prompt(&compilation, &request, &config)
                 .map_err(|error| CliError::execution(error.to_string()))?;
@@ -674,6 +719,10 @@ fn compile_image(options: ImageOptions) -> Result<u8, CliError> {
                 codex_home.clone(),
                 image_output,
             );
+            config.codex_binary_sha256 = options.codex_binary_sha256.clone();
+            if let Some(maximum) = options.max_fidelity_attempts {
+                config.max_fidelity_attempts = maximum;
+            }
             config.timeout = options.timeout;
             config.artifact_wait_timeout = options.artifact_wait;
             config.overwrite = options.compile.force;
@@ -681,6 +730,7 @@ fn compile_image(options: ImageOptions) -> Result<u8, CliError> {
             promptgen_codex::preflight_image_execution(&request, &config)
                 .map_err(|error| CliError::validation(error.to_string()))?;
             let mut luna_config = LunaReviewConfig::new(options.codex_binary, codex_home);
+            luna_config.codex_binary_sha256 = options.codex_binary_sha256;
             luna_config.timeout = options.timeout;
             let refinement = review_image_prompt(&compilation, &request, &luna_config)
                 .map_err(|error| CliError::execution(error.to_string()))?;
@@ -1247,7 +1297,7 @@ fn print_interview_help() {
 
 fn print_image_help() {
     println!(
-        "USAGE: promptgen image [--input FILE|-] [--mode prompt-only|luna-refine|codex-imagegen] [--format json|text] [--result FILE] [--image-output FILE] [--reference-image FILE] [--codex-binary FILE] [--codex-home DIR] [--timeout-seconds 1..3600] [--artifact-wait-seconds 1..600] [--force]"
+        "USAGE: promptgen image [--input FILE|-] [--mode prompt-only|luna-refine|codex-imagegen] [--format json|text] [--result FILE] [--image-output FILE] [--reference-image FILE] [--codex-binary FILE] [--codex-sha256 SHA256] [--codex-home DIR] [--max-fidelity-attempts 1..4] [--timeout-seconds 1..3600] [--artifact-wait-seconds 1..600] [--force]"
     );
 }
 
@@ -1261,7 +1311,7 @@ fn print_schema_help() {
 
 fn print_serve_help() {
     println!(
-        "USAGE: promptgen serve [--bind 127.0.0.1:4173] [--output-dir DIR] [--catalog-dir DIR] [--codex-binary FILE] [--codex-home DIR] [--timeout-seconds 1..3600] [--artifact-wait-seconds 1..600]"
+        "USAGE: promptgen serve [--bind 127.0.0.1:4173] [--output-dir DIR] [--catalog-dir DIR] [--codex-binary FILE] [--codex-sha256 SHA256] [--codex-home DIR] [--timeout-seconds 1..3600] [--artifact-wait-seconds 1..600]"
     );
 }
 

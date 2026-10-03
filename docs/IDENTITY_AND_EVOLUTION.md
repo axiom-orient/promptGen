@@ -14,7 +14,7 @@ image와 screen의 독립된 typed 계약, 유효한 입력의 결정적 render,
 
 여섯 primary outcome C1/C4/C5/C6/C10/C11의 의미와 category-bound profile을 보존한다. medium·lighting·palette·layout·text·reference를 별도 카테고리 축으로 중복시키지 않는다. `pose_transfer`/storyboard/consistency는 각자의 참조·연속성 계약이지 새로운 taxonomy card가 아니다. `app_icon`은 C4의 단일 중앙 subject·무문구·불투명 1024² PNG master concept이고 `logo_identity`는 vector 보장이 아닌 PNG concept다. textless `app_web_ui`는 발명한 문구·숫자·가짜 문자·데이터/차트 없이 구조와 상태를 표현한다.
 
-원본/reference bytes, 사용자 결과, 공개 schema/CLI/library/MCP와 receipt의 intentional contract, 명시 overwrite/인증/실패 의미를 보존한다. 요청한 변경과 보존 범위를 구별하고 실제로 전달하지 않은 파일을 참조했다고 주장하지 않는다. 컴파일 계산은 외부 I/O에서 분리한다. 공개 파일 편의 API의 존재 자체를 이유로 사용자 계약을 무단 폐기하지 않는다. LICENSE/NOTICE와 attribution을 유지한다.
+원본/reference bytes, 사용자 결과, 공개 schema/CLI/library/MCP와 receipt의 intentional contract, 명시 overwrite/인증/실패 의미를 보존한다. 요청한 변경과 보존 범위를 구별하고 실제로 전달하지 않은 파일을 참조했다고 주장하지 않는다. 컴파일 계산은 외부 I/O에서 분리한다. 공개 파일 편의 API의 존재 자체를 이유로 사용자 계약을 무단 폐기하지 않는다. Codex runtime SHA pin이 설정되면 각 child spawn 직전에 같은 regular non-symlink 실행 파일인지 확인하고 receipt에 digest를 남긴다. LICENSE/NOTICE와 attribution을 유지한다.
 
 ## 변경 가능한 것
 

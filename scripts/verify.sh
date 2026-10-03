@@ -16,6 +16,11 @@ cargo build --release --workspace --locked --offline
 ./scripts/generate-schemas.sh --check "${CARGO_TARGET_DIR:-$ROOT/target}/release/promptgen"
 python3 ./scripts/audit-architecture.py
 python3 ./scripts/audit-prompts.py
+if [ ! -e evals/dogfood/historical/1.4.0/image/image-evidence.json ] \
+  && [ ! -e evals/dogfood/historical/1.4.0/image/IMAGE_RESULT_ANALYSIS.md ] \
+  && [ ! -e evals/dogfood/current/IMAGE_EVIDENCE_POLICY.md ]; then
+  export PROMPTGEN_VERIFICATION_NOT_RUN='historical image evidence audit: archived evidence inputs are absent'
+fi
 python3 ./scripts/audit-image-evidence.py
 python3 ./scripts/audit-doc-links.py
 python3 ./scripts/audit-catalog-assets.py

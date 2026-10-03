@@ -121,9 +121,10 @@ def verify_verification_identity(root: Path, snapshot: dict) -> dict:
 
 def record_success_verification(root: Path, snapshot: dict) -> dict:
     """Atomically record a successful full local gate for this exact source tree."""
+    unverified = os.environ.get("PROMPTGEN_VERIFICATION_NOT_RUN")
     receipt = {
         "format": "promptgen-verification/4",
-        "scope": "complete local gate: check/test/fmt/clippy/doc/build/audits/CLI/web smoke",
+        "scope": "local gate: check/test/fmt/clippy/doc/build/maintained audits/CLI/web smoke",
         "status": "CURRENT_LOCAL_GATE_COMPLETED",
         "revision": snapshot["revision"],
         "source_tree_sha256": snapshot["tree_sha256"],
@@ -135,6 +136,8 @@ def record_success_verification(root: Path, snapshot: dict) -> dict:
             }
         ],
     }
+    if unverified:
+        receipt["unverified"] = [unverified]
     destination = root / "VERIFICATION.json"
     temporary = root / ".VERIFICATION.json.tmp"
     temporary.write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

@@ -495,7 +495,7 @@ dependencies = [
 
 [[package]]
 name = "promptgen-cli"
-version = "4.0.0"
+version = "5.0.0"
 dependencies = [
  "promptgen-codex",
  "promptgen-core",
@@ -506,18 +506,18 @@ dependencies = [
 
 [[package]]
 name = "promptgen-codex"
-version = "4.0.0"
+version = "5.0.0"
 dependencies = [
  "promptgen-core",
 ]
 
 [[package]]
 name = "promptgen-core"
-version = "4.0.0"
+version = "5.0.0"
 
 [[package]]
 name = "promptgen-mcp"
-version = "4.0.0"
+version = "5.0.0"
 dependencies = [
  "axum",
  "promptgen-core",
@@ -528,7 +528,7 @@ dependencies = [
 
 [[package]]
 name = "promptgen-web"
-version = "4.0.0"
+version = "5.0.0"
 dependencies = [
  "promptgen-codex",
  "promptgen-core",
