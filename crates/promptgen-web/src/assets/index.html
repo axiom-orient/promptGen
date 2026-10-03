@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>promptGen · 이미지 프롬프트 작업실</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23161b23'/%3E%3Ctext x='16' y='22' font-family='system-ui,sans-serif' font-size='15' font-weight='700' fill='%23fff' text-anchor='middle'%3EpG%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <div class="studio-shell">
+    <aside class="workbench" aria-label="프롬프트 작업대">
+      <header class="brand-header">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true">pG</div>
+          <div>
+            <h1>promptGen</h1>
+            <p>이미지 작업실</p>
+          </div>
+        </div>
+        <div class="brand-tools">
+          <button class="icon-button" id="theme-toggle" type="button" aria-label="화면 테마 전환" title="밝게 / 어둡게 / 시스템">◐</button>
+        </div>
+      </header>
+
+      <section class="recent-section" aria-labelledby="recent-title">
+        <div class="section-row">
+          <span class="section-label" id="recent-title">최근 작업</span>
+          <button class="link-button" id="clear-history">지우기</button>
+        </div>
+        <div class="recent-list" id="recent-list">
+          <p class="empty-copy">완성한 프롬프트가 이 기기에만 저장됩니다.</p>
+        </div>
+      </section>
+
+      <footer class="workbench-footer">
+        <span><span class="version" id="version">local</span> · 기록은 이 브라우저에만 보관됩니다.</span>
+        <button class="link-button" id="reset-all">초기화</button>
+      </footer>
+    </aside>
+
+    <main class="workspace">
+      <div class="input-pane">
+      <section class="composer-card composer-spread" id="text-composer" aria-labelledby="brief-label">
+        <div class="composer-copy">
+          <div class="composer-heading">
+            <label id="brief-label" for="brief">무엇을 만들까요?</label>
+            <span id="brief-count">0</span>
+          </div>
+          <textarea id="brief" rows="6" placeholder="예: /macro 무광 황동 시계 1개. 열린 기어와 미세한 긁힘, 왼쪽 확산광, 짙은 천 배경. 문구 없음."></textarea>
+          <p class="input-hint">대상·행동·재질·빛을 구체적으로 적으세요.</p>
+          <details class="visual-shortcuts"><summary>구도·표현 단축어</summary><div class="shortcut-grid" id="visual-shortcuts"></div><p class="input-hint">선택하면 요청 앞에 추가됩니다. 선택한 표현은 구체적인 시각 조건으로 풀어 씁니다.</p></details>
+          <div class="brief-examples" aria-label="이미지 예시 요청" data-sample-group="image">
+            <span>예시로 시작</span>
+            <button class="sample" type="button" data-sample-kind="image" data-sample-label="여행 다이어리" data-sample="/travel-journal /scrapbook /handwritten 제주 해변 여행 기록 한 장. 수평선 아래 푸른 바다, 크림색 종이 여백. 제목은 &quot;바람을 따라&quot;. 다른 문구나 날짜 없음.">여행 다이어리</button>
+            <button class="sample" type="button" data-sample-kind="image" data-sample-label="사진에 메모" data-sample="/scrapbook 원본 사진에 크림색 종이 여백과 한국어 메모만 추가. 얼굴·옷·자세·장소와 사진 내부 구도를 유지. 문구는 &quot;오늘의 작은 기록&quot;만 사용.">사진에 메모</button>
+          </div>
+          <button class="link-button sample-undo hidden" id="undo-sample" type="button">방금 예시 취소</button>
+        </div>
+        <div class="composer-actions">
+          <section class="run-options" id="run-options" aria-label="이미지 실행 방식">
+            <div class="section-row"><span class="section-label">결과</span></div>
+            <div class="segmented-control">
+              <button class="mode-button active" data-mode="prompt-only" aria-pressed="true">프롬프트만</button>
+              <button class="mode-button" data-mode="codex-imagegen" aria-pressed="false">이미지 생성</button>
+            </div>
+          </section>
+          <p class="input-hint hidden" id="execution-note">Codex 로그인과 이미지 도구가 필요합니다. 검토와 생성은 외부 서비스를 호출하며 사용량을 소비합니다.</p>
+          <section class="quick-options" id="image-quick-options" aria-labelledby="quick-options-title">
+            <span class="sr-only" id="quick-options-title">화면 비율</span>
+            <div class="quick-option-group"><span>비율</span><div class="quick-chip-row" id="quick-aspect" role="radiogroup" aria-label="화면 비율">
+              <button type="button" data-quick-aspect="2:3" role="radio" aria-checked="false">세로</button><button type="button" data-quick-aspect="1:1" role="radio" aria-checked="false">정사각</button><button type="button" data-quick-aspect="16:9" role="radio" aria-checked="false">가로</button>
+            </div></div>
+          </section>
+          <button class="analyze-button" id="analyze"><span>프롬프트 만들기</span><span aria-hidden="true">→</span></button>
+          <div class="composer-status"><div class="status-line" id="status-line">원하는 결과를 한 문장으로 시작하세요.</div><kbd>⌘ ↵</kbd></div>
+        </div>
+      </section>
+
+      <section class="route-summary hidden" id="route-summary" aria-label="제작 설정">
+        <details class="route-settings" id="route-settings">
+          <summary><span id="route-category">제작 설정</span><span>설정 수정</span></summary>
+          <div class="route-facts"><span id="route-medium"></span><span id="route-aspect"></span><span id="route-text"></span></div>
+          <p class="input-hint">자동으로 정한 값은 이곳에서 바꿀 수 있습니다. 최고 디테일은 시간과 비용이 더 들 수 있습니다.</p>
+          <fieldset class="route-fieldset">
+            <legend>표현 매체</legend>
+            <p>매체를 바꾸면 조명·재질 어휘와 색 처리 방식이 함께 바뀝니다.</p>
+            <div class="route-fieldset-body tile-row" id="route-medium-select" role="radiogroup" aria-label="표현 매체"></div>
+          </fieldset>
+          <fieldset class="route-fieldset">
+            <legend>이미지 프로필</legend>
+            <p>여섯 결과물 카테고리 안의 세부 경로입니다. 카테고리를 바꾸면 호환되지 않는 프로필은 초기화됩니다.</p>
+            <div class="route-fieldset-body tile-row" id="route-profile-select" role="radiogroup" aria-label="이미지 프로필"></div>
+          </fieldset>
+          <fieldset class="route-fieldset">
+            <legend>화면 비율</legend>
+            <p>타일 모양이 실제 출력 비율입니다.</p>
+            <div class="route-fieldset-body tile-row" id="route-aspect-select" role="radiogroup" aria-label="화면 비율"></div>
+          </fieldset>
+          <fieldset class="route-fieldset">
+            <legend>생성 디테일</legend>
+            <div class="route-fieldset-body tile-row" id="route-detail-select" role="radiogroup" aria-label="생성 디테일"></div>
+          </fieldset>
+          <fieldset class="route-fieldset route-text-settings hidden" id="route-text-settings">
+            <legend>문구 배치와 인상</legend>
+            <p>정확 문구를 넣은 결과물에서만 사용합니다.</p>
+            <div class="route-fieldset-body route-inline">
+              <div>
+                <span class="section-label">문구 위치</span>
+                <div class="zone-grid" id="route-text-position" role="radiogroup" aria-label="문구 위치"></div>
+              </div>
+              <div>
+                <span class="section-label">문자 인상</span>
+                <div class="tile-row" id="route-text-style" role="radiogroup" aria-label="문자 인상"></div>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="route-fieldset lut-setting hidden" id="lut-setting">
+            <legend>사진 색감</legend>
+            <p>사진 매체에서만 적용됩니다. 그래픽·일러스트·3D로 바꾸면 자동으로 제외됩니다.</p>
+            <p class="lut-reason" id="lut-reason">핵심 결정을 마치면 요청과 스타일에 맞춰 자동 선택합니다.</p>
+            <div class="lut-grid swatch-grid route-fieldset-body" id="lut-grid" role="radiogroup" aria-label="사진 색감 프리셋"></div>
+          </fieldset>
+          <div class="route-auto-row">
+            <span>자동값은 선택한 결과물과 요청 문장에서 계산합니다.</span>
+            <button class="quiet-button route-auto-button" id="route-auto" type="button">이 경로의 자동값으로</button>
+          </div>
+        </details>
+      </section>
+
+      <section class="question-card question-stage hidden" id="question-card">
+        <div class="question-intro">
+          <div class="question-index" id="question-index">핵심 결정</div>
+          <label id="question-label" for="question-input"></label>
+          <p id="question-help"></p>
+          <div class="question-why" id="question-why"></div>
+        </div>
+        <div class="question-answer">
+          <div id="question-control"></div>
+          <div class="validation-message hidden" id="question-error"></div>
+          <div class="question-actions">
+            <button class="quiet-button hidden" id="skip-question">해당 없음</button>
+            <button class="primary-button" id="answer-question">이 결정 적용</button>
+          </div>
+        </div>
+      </section>
+
+      </div>
+      <div class="output-pane">
+      <section class="empty-stage" id="empty-stage">
+        <details class="direction-examples" id="direction-examples" open>
+          <summary><strong>결과물 선택</strong></summary>
+          <div class="direction-examples-body stage-surface">
+        <div class="catalog-stage-header"><span id="catalog-count">결과물 6</span></div>
+        <div class="catalog-toolbar">
+          <label class="catalog-search">
+            <span aria-hidden="true">⌕</span>
+            <input type="search" id="catalog-search" placeholder="결과물 찾기" aria-label="카탈로그 검색" autocomplete="off">
+          </label>
+        </div>
+        <div class="catalog-grid" id="catalog-grid" role="group" aria-label="결과물 예시 카드">
+          <p class="empty-copy">결과물 예시를 불러오고 있습니다.</p>
+        </div>
+        <div class="catalog-footer">
+          <span id="catalog-result-count">대표 결과물 1개를 선택합니다.</span>
+          <span>← → 로 카드 사이를 이동하고 Enter 로 선택합니다.</span>
+        </div>
+          </div>
+        </details>
+      </section>
+
+      <section class="result-stage hidden" id="result-stage">
+        <div class="image-frame hidden" id="image-frame"><img id="generated-image" alt="생성된 이미지"></div>
+        <section class="result-overview" id="result-overview" aria-label="결과 상태">
+          <span class="status-badge neutral" id="validation-badge">대기</span>
+          <div class="result-locks" id="result-locks-preview" aria-label="유지할 조건"></div>
+          <button class="quiet-button" id="edit-direction" type="button" aria-controls="empty-stage">결과물 변경</button>
+        </section>
+        <article class="prompt-card" aria-labelledby="prompt-title">
+          <header class="prompt-card-header"><h2 id="prompt-title">프롬프트</h2>
+        <div class="stage-actions hidden" id="stage-actions">
+          <button class="toolbar-button" id="copy-prompt" disabled>프롬프트 복사</button>
+          <button class="toolbar-button" id="download-request" disabled>요청 JSON</button>
+          <button class="toolbar-button" id="inspector-toggle" aria-controls="inspector-panel" aria-expanded="false">검증 상세</button>
+        </div>
+          </header>
+          <pre class="prompt-output" id="prompt-output"></pre>
+          <footer class="result-footer"><span id="result-summary"></span><button class="primary-button hidden" id="execute" disabled>이미지 생성</button></footer>
+        </article>
+        <details class="result-details" id="result-details">
+          <summary>일관성·검수 기준</summary>
+          <div class="result-details-body">
+        <section class="generation-plan hidden" id="generation-plan" aria-labelledby="generation-plan-title">
+          <header>
+            <div>
+              <span class="eyebrow">생성 전략</span>
+              <h3 id="generation-plan-title">무엇을 잠그고, 무엇을 바꿀지</h3>
+            </div>
+            <span class="plan-rule">한 번에 한 축만 변주</span>
+          </header>
+          <div class="generation-plan-grid" id="generation-plan-grid"></div>
+        </section>
+          </div>
+        </details>
+      </section>
+      </div>
+    </main>
+
+    <aside class="inspector-panel" id="inspector-panel" role="dialog" aria-modal="true" aria-label="구조와 검증 상세 패널" aria-hidden="true">
+      <header><div><span class="eyebrow">상세 정보</span><h2>구조와 검증</h2></div><button class="icon-button" id="inspector-close" aria-label="상세 패널 닫기">×</button></header>
+      <section class="inspector-section"><h3>추론</h3><div class="empty-copy" id="inference-list">아직 추론된 값이 없습니다.</div></section>
+      <section class="inspector-section"><h3>참고 카테고리</h3><div class="empty-copy" id="knowledge-list">선택한 시각 시스템이 없습니다.</div></section>
+      <section class="inspector-section"><h3>진단</h3><div class="empty-copy" id="diagnostic-list">컴파일하면 진단이 표시됩니다.</div></section>
+      <section class="inspector-section grow"><div class="section-heading-row"><h3>구조화 요청</h3><button class="icon-button" id="copy-request" disabled title="JSON 복사">⧉</button></div><pre id="request-json">{}</pre></section>
+    </aside>
+  </div>
+  <button class="inspector-backdrop hidden" id="inspector-backdrop" aria-label="상세 패널 닫기"></button>
+
+  <div class="preview-dialog hidden" id="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="preview-title">
+    <div class="preview-panel">
+      <div class="preview-media"><img id="preview-image" alt=""></div>
+      <div class="preview-body">
+        <div class="preview-head">
+          <div>
+            <span class="eyebrow" id="preview-path"></span>
+            <h3 id="preview-title"></h3>
+          </div>
+          <button class="icon-button" id="preview-close" type="button" aria-label="미리보기 닫기">×</button>
+        </div>
+        <div class="preview-facts" id="preview-facts"></div>
+        <p class="empty-copy" id="preview-intent"></p>
+        <ul class="preview-directives" id="preview-directives"></ul>
+        <fieldset class="preview-profile-fieldset">
+          <legend>이 카테고리 안에서 만들 것</legend>
+          <p>요청에 맞춰 자동 추천하거나, 로고·앱 UI·품새처럼 세부 경로를 먼저 고를 수 있습니다.</p>
+          <div class="preview-profile-select" id="preview-profile-select" role="radiogroup" aria-label="카테고리 세부 제작 경로"></div>
+        </fieldset>
+        <div class="preview-actions">
+          <button class="primary-button" id="preview-select" type="button">이 프리뷰로 시작</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="visually-hidden" id="announcer" role="status" aria-live="polite" aria-atomic="true"></div>
+  <div class="toast hidden" id="toast"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+{
+  "schema": "promptgen-screen-v1",
+  "fidelity": "styled",
+  "contentMode": "provided_synthetic",
+  "viewport": {
+    "width": 1200,
+    "height": 800
+  },
+  "raster": {
+    "width": 1536,
+    "height": 1024
+  },
+  "regions": [
+    {
+      "id": "main",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1200,
+        "height": 800
+      },
+      "dataState": "empty",
+      "stateText": "",
+      "rows": []
+    }
+  ],
+  "elements": [
+    {
+      "id": "title",
+      "region": "main",
+      "role": "heading",
+      "text": "Notifications",
+      "componentState": "default"
+    },
+    {
+      "id": "frequency_label",
+      "region": "main",
+      "role": "label",
+      "text": "Email digest frequency",
+      "componentState": "default"
+    },
+    {
+      "id": "frequency",
+      "region": "main",
+      "role": "input",
+      "text": "Weekly",
+      "componentState": "default"
+    },
+    {
+      "id": "help",
+      "region": "main",
+      "role": "label",
+      "text": "A summary arrives every Monday.",
+      "componentState": "default"
+    },
+    {
+      "id": "save",
+      "region": "main",
+      "role": "button",
+      "text": "Save preferences",
+      "componentState": "default"
+    },
+    {
+      "id": "cancel",
+      "region": "main",
+      "role": "button",
+      "text": "Cancel",
+      "componentState": "default"
+    }
+  ],
+  "purpose": "Cedar notification preferences. Account settings form with explicit current values.",
+  "theme": {
+    "canvas": "#F6F8FB",
+    "surface": "#FFFFFF",
+    "text": "#172B4D",
+    "accent": "#2563EB",
+    "border": "#DCE3ED"
+  },
+  "brief": {
+    "audience": "Workspace members",
+    "userTask": "Change the email digest frequency and save preferences",
+    "primaryAction": "save",
+    "density": "comfortable"
+  }
+}

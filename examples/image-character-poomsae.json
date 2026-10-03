@@ -1,0 +1,142 @@
+{
+  "language": "ko",
+  "use_case": "text-directed taekwondo poomsae pose reference concept for an original adult character",
+  "medium": "illustration",
+  "taxonomy": {
+    "category": "C10"
+  },
+  "scene": {
+    "environment": "simple martial arts studio with a matte floor and plain wall",
+    "background": "opaque warm gray studio backdrop",
+    "atmosphere": "instructional clarity with enough contrast to read the full body silhouette",
+    "time_of_day": null,
+    "weather": null
+  },
+  "subjects": [
+    {
+      "id": "poomsae_practitioner",
+      "count": 1,
+      "description": "original adult taekwondo practitioner in a fully opaque white dobok, no identifiable real person",
+      "placement": {
+        "zone": "center"
+      },
+      "scale": "full body occupies 72% of canvas height",
+      "pose": "taekwondo poomsae ap kubi front stance: left foot forward, left knee bent over ankle, rear leg straight, pelvis level, torso upright, left arm extended in middle block, right fist chambered at hip",
+      "gaze": "eyes forward over the left fist toward the imagined opponent",
+      "action": "holds one stable poomsae sequence position with clear foot contact and weight distribution",
+      "appearance": "plain white dobok with dark belt and tied hair",
+      "distinguishing_features": [
+        "visible heel-to-floor contact",
+        "unambiguous left/right limb assignment",
+        "hands and feet fully inside frame"
+      ]
+    }
+  ],
+  "composition": {
+    "framing": "full-body vertical instructional plate",
+    "viewpoint": "straight-on slightly low eye-level",
+    "camera_angle": "parallel to floor with minimal perspective",
+    "balance": "centered silhouette and clear limb separation",
+    "visual_hierarchy": [
+      "poomsae_practitioner"
+    ],
+    "depth_layers": [
+      "matte studio floor",
+      "full-body character",
+      "plain background"
+    ],
+    "negative_space": [
+      "top_center"
+    ]
+  },
+  "camera": {
+    "field_of_view": "moderate 50mm equivalent",
+    "perspective": "natural low-distortion perspective",
+    "depth_of_field": "full body and floor contact sharp",
+    "focus": "hips, knees, feet, hands, and face all readable",
+    "motion_rendering": "frozen instructional pose"
+  },
+  "lighting": {
+    "key_direction": "정면 수평선의 태양에서 카메라 쪽으로 역광",
+    "key_quality": "수면 반사로 넓게 퍼지는 저각 확산광",
+    "key_temperature_kelvin": 2400,
+    "key_color_hex": "#FF9A3C",
+    "key_to_fill_ratio": 4.0,
+    "fill_description": "하늘 상단의 자주빛 반사광이 갑주 좌측면을 낮은 강도로 채움",
+    "rim_description": "인물 어깨와 검신 상단에 폭 3px의 주황 림라이트",
+    "shadow_character": "인물과 깃대는 카메라 쪽으로 길게 떨어지는 실루엣 그림자",
+    "exposure": "태양 주변 하이라이트는 유지하고 갑주 암부는 형태가 식별되는 수준"
+  },
+  "color": {
+    "palette": [
+      {
+        "hex": "#F4713B",
+        "usage": "하늘과 태양 주변",
+        "proportion_percent": 34
+      },
+      {
+        "hex": "#1E3A63",
+        "usage": "바다와 갑주",
+        "proportion_percent": 30
+      },
+      {
+        "hex": "#B3352C",
+        "usage": "망토와 꽃잎",
+        "proportion_percent": 20
+      },
+      {
+        "hex": "#6B4E7A",
+        "usage": "상단 하늘과 구름 음영",
+        "proportion_percent": 16
+      }
+    ],
+    "harmony": "주황과 남색의 보색 대비, 자주는 두 색의 전이 구간에만 사용",
+    "contrast": "인물 실루엣과 하늘 사이 명도 차이를 45% 이상 유지",
+    "saturation": "하늘은 기준 채도의 95%, 갑주 암부는 70%"
+  },
+  "surfaces": [
+    {
+      "id": "armor",
+      "material": "옻칠 판금과 가죽 끈",
+      "finish": "반광",
+      "micro_detail": "판금 가장자리의 미세한 흠집과 끈의 짜임",
+      "light_response": "역광에서 가장자리에만 좁은 반사"
+    },
+    {
+      "id": "cliff_stone",
+      "material": "풍화된 사암 블록",
+      "finish": "무광",
+      "micro_detail": "블록 이음새의 이끼와 잔금",
+      "light_response": "접선광에서 표면 요철이 드러남"
+    }
+  ],
+  "text_elements": [],
+  "constraints": {
+    "required_elements": [
+      "text-directed poomsae stance",
+      "full body and floor contact",
+      "clear hands, feet, gaze, and weight"
+    ],
+    "excluded_elements": [
+      "martial-arts weapon",
+      "extra people",
+      "nudity",
+      "cropped limbs",
+      "reference-image dependency"
+    ],
+    "safety_tier": 0,
+    "adult_subjects_only": false,
+    "original_characters_only": true,
+    "clean_unbranded_finish": true
+  },
+  "output": {
+    "width": 1024,
+    "height": 1536,
+    "background": "opaque",
+    "format": "png",
+    "backend": "codex-subscription",
+    "detail": "high"
+  },
+  "profile": "poomsae_pose",
+  "render_profile": "structured"
+}

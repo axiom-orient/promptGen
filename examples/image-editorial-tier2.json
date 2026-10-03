@@ -1,0 +1,161 @@
+{
+  "language": "ko",
+  "render_profile": "structured",
+  "use_case": "성인 리조트웨어 컬렉션의 세로형 패션 에디토리얼 화보",
+  "medium": "photo",
+  "taxonomy": {
+    "category": "C1"
+  },
+  "scene": {
+    "environment": "해 질 무렵의 비어 있는 해안 리조트 테라스, 석회암 바닥과 낮은 난간",
+    "background": "후면 70%는 수평선이 곧게 보이는 잔잔한 청회색 바다, 왼쪽 후경에 무표식 아이보리 패브릭 파라솔 한 개",
+    "atmosphere": "수평선과 난간의 안정된 수평축, 인물 주변 좌우 여백 18%, 절제된 리조트 룩북 밀도",
+    "time_of_day": "일몰 25분 전",
+    "weather": "구름이 얇게 분산된 맑은 날, 바람은 머리카락 끝만 3cm 이내로 움직임"
+  },
+  "subjects": [
+    {
+      "id": "adult_model",
+      "count": 1,
+      "description": "30세 성인 여성 가상 모델 한 명, 자연스러운 피부 결, 갈색 눈, 턱선 길이의 짙은 갈색 보브 헤어",
+      "placement": {
+        "zone": "custom",
+        "x_percent": 34,
+        "y_percent": 17,
+        "width_percent": 34,
+        "height_percent": 70
+      },
+      "scale": "머리부터 발끝까지 캔버스 높이의 68%",
+      "pose": "양발 간격 18cm, 상체를 곧게 세우고 오른쪽 어깨를 카메라 쪽으로 8도 회전",
+      "gaze": "카메라 렌즈를 정면으로 바라보며 턱은 수평선보다 2도 높음",
+      "action": "오른손은 재킷 앞섶을 가볍게 잡고 왼팔은 몸 옆에 자연스럽게 내림",
+      "appearance": "완전 불투명한 세이지색 리넨 테일러드 재킷, 높은 라운드넥 이너, 발목 길이 와이드 팬츠, 모든 의상은 몸 전체를 안정적으로 덮는 여유로운 핏",
+      "distinguishing_features": [
+        "재킷 라펠 가장자리에 2mm 폭의 같은 색 파이핑",
+        "신발은 무표식 매트 아이보리 로퍼"
+      ],
+      "face": "차분한 자신감이 도는 표정, 자연스러운 피부 결, 보이는 모공, 갈색 눈과 균형 잡힌 이목구비",
+      "hair": "턱선 길이의 짙은 갈색 보브 헤어, 의상 어깨선을 가리지 않고 머리카락 끝 두세 가닥만 바람에 움직임"
+    }
+  ],
+  "composition": {
+    "framing": "전신 세로 구도, 발밑 석회암 바닥 12%와 머리 위 하늘 16% 포함",
+    "viewpoint": "바닥에서 145cm 높이의 아이레벨",
+    "camera_angle": "수평선과 센서 가로축이 평행하고 롤 각도 0도",
+    "balance": "인물을 중앙보다 너비의 1% 오른쪽에 두고 파라솔은 왼쪽 후경에서 균형을 보조",
+    "visual_hierarchy": [
+      "adult_model"
+    ],
+    "depth_layers": [
+      "전경은 석회암 바닥의 미세한 기공",
+      "중경은 성인 모델과 의상 실루엣",
+      "후경은 난간, 바다, 수평선, 파라솔"
+    ],
+    "negative_space": [
+      "top_left",
+      "top_right"
+    ]
+  },
+  "camera": {
+    "field_of_view": "자연스러운 표준보다 약간 압축된 시야, 얼굴과 발의 크기 차이가 작음",
+    "perspective": "수직선이 평행하고 신체 비율의 원근 과장이 없음",
+    "depth_of_field": "얼굴과 의상 전체는 선명하며 바다 수평선은 부드럽게 분리됨",
+    "focus": "양쪽 눈과 재킷 라펠의 같은 초점면",
+    "motion_rendering": "인물과 의상은 정지하고 머리카락 끝 두세 가닥만 약한 방향성 움직임"
+  },
+  "lighting": {
+    "key_direction": "화면 왼쪽 9시 방향에서 얼굴 오른쪽으로",
+    "key_quality": "넓고 부드러운 측면광, 광대 하이라이트 경계 전이 폭 18mm",
+    "key_temperature_kelvin": 4800,
+    "key_color_hex": "#F1D0AA",
+    "key_to_fill_ratio": 2.5,
+    "fill_description": "정면 오른쪽의 차가운 바다 반사광이 눈 아래와 재킷 주름의 세부를 유지",
+    "rim_description": "오른쪽 후면에서 머리카락과 재킷 어깨 외곽에 폭 2mm의 중성 림",
+    "shadow_character": "턱 아래와 재킷 겹침에 가장자리 전이가 부드러운 낮은 농도의 그림자",
+    "exposure": "피부 하이라이트와 아이보리 이너의 섬유 결을 모두 보존하고 바다는 청회색 층을 유지"
+  },
+  "color": {
+    "palette": [
+      {
+        "hex": "#9AA58B",
+        "proportion_percent": 35,
+        "usage": "세이지 리넨 수트"
+      },
+      {
+        "hex": "#D8D1C4",
+        "proportion_percent": 25,
+        "usage": "석회암과 아이보리 이너"
+      },
+      {
+        "hex": "#6F8490",
+        "proportion_percent": 25,
+        "usage": "바다와 수평선"
+      },
+      {
+        "hex": "#3B302B",
+        "proportion_percent": 15,
+        "usage": "헤어와 낮은 그림자"
+      }
+    ],
+    "harmony": "세이지와 청회색의 저채도 인접 조화, 피부의 따뜻한 중간톤이 중심 분리",
+    "contrast": "인물 실루엣과 바다 배경 사이 명도 차이 18% 이상",
+    "saturation": "전체 기준 채도 72%, 피부와 린넨의 색 분리 유지",
+    "photo_lut": {
+      "preset": "clean_neutral",
+      "strength_percent": 64,
+      "white_balance_kelvin": 4900,
+      "saturation_percent": 76,
+      "shadow_bias_hex": "#667680",
+      "highlight_bias_hex": "#E4C6A7",
+      "skin_tone_policy": "natural_warm",
+      "halation_percent": 2,
+      "vignette_percent": 1,
+      "grain_size": "fine",
+      "grain_amount_percent": 6
+    }
+  },
+  "surfaces": [
+    {
+      "id": "linen_suit",
+      "material": "중간 굵기의 불투명 리넨 직조",
+      "finish": "낮은 광택의 건조한 표면",
+      "micro_detail": "1mm 간격의 교차 직조와 자연스러운 작은 주름",
+      "light_response": "접선 방향에서만 폭 3mm 이하의 약한 섬유 하이라이트"
+    },
+    {
+      "id": "limestone_floor",
+      "material": "밝은 석회암",
+      "finish": "무광 연마",
+      "micro_detail": "0.5mm 이하의 기공과 불규칙한 옅은 회색 점",
+      "light_response": "넓은 확산 반사와 발밑의 부드러운 접촉 그림자"
+    }
+  ],
+  "text_elements": [],
+  "constraints": {
+    "required_elements": [
+      "25세 이상 성인 한 명만 프레임에 존재",
+      "완전 불투명한 재킷, 높은 라운드넥 이너, 발목 길이 팬츠",
+      "수평선은 곧고 수평으로 유지",
+      "자연스러운 피부 결과 실제 리넨 직조"
+    ],
+    "excluded_elements": [
+      "추가 인물",
+      "읽을 수 있는 문자",
+      "브랜드 표식",
+      "의상 벌어짐",
+      "해부학적 왜곡"
+    ],
+    "safety_tier": 2,
+    "adult_subjects_only": true,
+    "original_characters_only": true,
+    "clean_unbranded_finish": true
+  },
+  "output": {
+    "width": 1024,
+    "height": 1536,
+    "background": "opaque",
+    "format": "png",
+    "backend": "codex-subscription",
+    "detail": "high"
+  }
+}

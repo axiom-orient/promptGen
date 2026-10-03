@@ -1,0 +1,90 @@
+{
+  "schema": "promptgen-screen-v1",
+  "fidelity": "styled",
+  "contentMode": "provided_synthetic",
+  "viewport": {
+    "width": 1200,
+    "height": 800
+  },
+  "raster": {
+    "width": 1536,
+    "height": 1024
+  },
+  "regions": [
+    {
+      "id": "main",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1200,
+        "height": 800
+      },
+      "dataState": "populated",
+      "stateText": "",
+      "rows": [
+        [
+          "Grid notebook",
+          "Paper",
+          "18",
+          "€12.00"
+        ],
+        [
+          "Brass ruler",
+          "Tools",
+          "7",
+          "€9.50"
+        ],
+        [
+          "Blue pencil",
+          "Writing",
+          "42",
+          "€2.00"
+        ]
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "id": "title",
+      "region": "main",
+      "role": "heading",
+      "text": "Products",
+      "componentState": "default"
+    },
+    {
+      "id": "search",
+      "region": "main",
+      "role": "input",
+      "text": "Search products",
+      "componentState": "default"
+    },
+    {
+      "id": "add",
+      "region": "main",
+      "role": "button",
+      "text": "Add product",
+      "componentState": "default"
+    },
+    {
+      "id": "header",
+      "region": "main",
+      "role": "table_header",
+      "text": "Product | Category | In stock | Price",
+      "componentState": "default"
+    }
+  ],
+  "purpose": "Juniper shop inventory catalog. Product comparison table for a small stationery store; no hero advertisement.",
+  "theme": {
+    "canvas": "#F6F8FB",
+    "surface": "#FFFFFF",
+    "text": "#172B4D",
+    "accent": "#2563EB",
+    "border": "#DCE3ED"
+  },
+  "brief": {
+    "audience": "Store catalog managers",
+    "userTask": "Review product stock and add an item",
+    "primaryAction": "add",
+    "density": "compact"
+  }
+}

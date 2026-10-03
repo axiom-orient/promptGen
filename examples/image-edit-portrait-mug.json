@@ -1,0 +1,164 @@
+{
+  "language": "ko",
+  "use_case": "원본 작업실 인물 사진에서 오른쪽 아래 머그컵 색상만 테라코타로 변경",
+  "medium": "photo",
+  "taxonomy": {
+    "category": "C1"
+  },
+  "scene": {
+    "environment": "첨부된 원본 사진의 창가 목공 작업실을 그대로 보존",
+    "background": "원본 창문·식물·책장·벽·의자의 위치와 모습 그대로",
+    "atmosphere": "원본의 조용한 자연광 작업실 분위기 그대로",
+    "time_of_day": null,
+    "weather": null
+  },
+  "subjects": [
+    {
+      "id": "person",
+      "count": 1,
+      "description": "원본 사진에서 남색 셔츠를 입고 의자 스케치를 하는 성인 남성 한 명",
+      "placement": {
+        "zone": "center"
+      },
+      "scale": "원본 인물 크기 그대로",
+      "pose": "원본 양손과 몸·머리의 자세 그대로",
+      "action": "원본 의자 스케치 동작 그대로",
+      "gaze": "원본 아래쪽 종이를 보는 시선 그대로",
+      "appearance": "원본 얼굴·검은 헤어·남색 긴팔 셔츠와 피부를 그대로 보존",
+      "distinguishing_features": [
+        "원본 인물의 정체성과 표정 보존"
+      ]
+    },
+    {
+      "id": "mug",
+      "count": 1,
+      "description": "원본 오른쪽 아래의 머그컵 하나; 색만 따뜻한 테라코타 #B85C38로 변경",
+      "placement": {
+        "zone": "bottom_right"
+      },
+      "scale": "원본 컵 크기 그대로",
+      "pose": "원본 컵과 손잡이 방향 그대로",
+      "action": "정지",
+      "gaze": "not applicable",
+      "appearance": "테라코타색 도자기; 원래 재질과 명암 반응 그대로",
+      "distinguishing_features": [
+        "원래 위치와 형태를 보존"
+      ]
+    }
+  ],
+  "composition": {
+    "framing": "첨부된 정사각 원본 사진의 프레이밍 그대로",
+    "viewpoint": "원본 시점 그대로",
+    "camera_angle": "원본 카메라 각도 그대로",
+    "balance": "원본 시각 균형 그대로",
+    "visual_hierarchy": [
+      "person",
+      "mug"
+    ],
+    "depth_layers": [
+      "원본 전경의 책상과 도면",
+      "원본 중경의 인물과 컵",
+      "원본 후경의 창문·식물·선반"
+    ],
+    "negative_space": []
+  },
+  "camera": {
+    "field_of_view": "원본 화각 그대로",
+    "perspective": "원본 원근 그대로",
+    "depth_of_field": "원본 심도 그대로",
+    "focus": "원본 초점 그대로",
+    "motion_rendering": "원본 정지 사진 그대로"
+  },
+  "lighting": {
+    "key_direction": "원본 왼쪽 창문 자연광 방향 그대로",
+    "key_quality": "원본 확산 일광 그대로",
+    "key_temperature_kelvin": null,
+    "key_color_hex": null,
+    "key_to_fill_ratio": null,
+    "fill_description": "원본 반사광 그대로",
+    "rim_description": null,
+    "shadow_character": "원본 그림자 형태와 명암 그대로",
+    "exposure": "원본 노출 그대로"
+  },
+  "color": {
+    "palette": [
+      {
+        "hex": "#BA9268",
+        "usage": "원본 나무·벽·종이의 중성색 보존",
+        "proportion_percent": 70
+      },
+      {
+        "hex": "#182B45",
+        "usage": "원본 남색 셔츠 보존",
+        "proportion_percent": 25
+      },
+      {
+        "hex": "#B85C38",
+        "usage": "지정된 머그컵의 새 색",
+        "proportion_percent": 5
+      }
+    ],
+    "harmony": "원본 색상 조화를 보존하고 컵만 지정색으로 변경",
+    "contrast": "원본 명도 대비 그대로",
+    "saturation": "원본 채도 그대로",
+    "photo_lut": null
+  },
+  "surfaces": [
+    {
+      "id": "mug_surface",
+      "material": "원본 도자기 머그컵",
+      "finish": "원본 마감 그대로, 색만 테라코타로 변경",
+      "micro_detail": "원본 컵 표면 세부 그대로",
+      "light_response": "원본 컵의 광원 반응 그대로"
+    }
+  ],
+  "text_elements": [],
+  "constraints": {
+    "required_elements": [
+      "원본 인물 한 명과 머그컵 한 개 그대로",
+      "컵 표면만 지정색으로 변경",
+      "원본 사진의 나머지 모든 시각 요소 보존"
+    ],
+    "excluded_elements": [
+      "추가 인물",
+      "새로운 문자·로고·워터마크",
+      "원본에 없던 물건"
+    ],
+    "safety_tier": 0,
+    "adult_subjects_only": true,
+    "original_characters_only": false,
+    "clean_unbranded_finish": false
+  },
+  "output": {
+    "width": 1024,
+    "height": 1024,
+    "background": "opaque",
+    "format": "png",
+    "backend": "codex-subscription",
+    "detail": "high"
+  },
+  "task_mode": "edit",
+  "references": [
+    {
+      "index": 1,
+      "role": "base",
+      "description": "창가 목공 작업실에서 남색 셔츠를 입은 남성 한 명이 의자 스케치를 하고 있고 오른쪽 아래에 짙은 파란색 머그컵 하나가 있다.",
+      "use_for": [
+        "전체 사진의 인물 정체성·자세·옷·얼굴",
+        "카메라·구도·배경·그림·조명·원래 색상",
+        "머그컵의 형태·위치·크기"
+      ]
+    }
+  ],
+  "change_contract": {
+    "change_only": [
+      "오른쪽 아래 짙은 파란색 머그컵의 표면 색만 따뜻한 테라코타색 #B85C38로 변경"
+    ],
+    "preserve": [
+      "인물의 얼굴·헤어·표정·정체성·남색 셔츠·양손과 자세",
+      "책상 위 의자 스케치·나무 조각·그릇·책·식물·창문·선반의 위치와 형태",
+      "머그컵의 실루엣·손잡이·크기·원래 위치·재질·광원 반응",
+      "원본 카메라·사진 내부 구도·광원·색상·배경 전체; 지정한 컵 색 이외 아무것도 바꾸지 않음"
+    ]
+  }
+}

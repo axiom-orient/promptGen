@@ -1,0 +1,112 @@
+{
+  "schema": "promptgen-screen-v1",
+  "fidelity": "styled",
+  "contentMode": "provided_synthetic",
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "raster": {
+    "width": 1536,
+    "height": 1024
+  },
+  "regions": [
+    {
+      "id": "sidebar",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 224,
+        "height": 800
+      },
+      "dataState": "empty",
+      "stateText": "",
+      "rows": []
+    },
+    {
+      "id": "main",
+      "bounds": {
+        "x": 224,
+        "y": 0,
+        "width": 1056,
+        "height": 800
+      },
+      "dataState": "error",
+      "stateText": "Unable to load orders\nTry again.",
+      "rows": []
+    }
+  ],
+  "elements": [
+    {
+      "id": "brand",
+      "region": "sidebar",
+      "role": "brand",
+      "text": "Northstar",
+      "componentState": "default"
+    },
+    {
+      "id": "nav_orders",
+      "region": "sidebar",
+      "role": "navigation",
+      "text": "Orders",
+      "componentState": "selected"
+    },
+    {
+      "id": "nav_customers",
+      "region": "sidebar",
+      "role": "navigation",
+      "text": "Customers",
+      "componentState": "default"
+    },
+    {
+      "id": "nav_reports",
+      "region": "sidebar",
+      "role": "navigation",
+      "text": "Reports",
+      "componentState": "default"
+    },
+    {
+      "id": "title",
+      "region": "main",
+      "role": "heading",
+      "text": "Orders",
+      "componentState": "default"
+    },
+    {
+      "id": "subtitle",
+      "region": "main",
+      "role": "label",
+      "text": "Manage your customer orders",
+      "componentState": "default"
+    },
+    {
+      "id": "create",
+      "region": "main",
+      "role": "button",
+      "text": "Create order",
+      "componentState": "default"
+    },
+    {
+      "id": "search",
+      "region": "main",
+      "role": "input",
+      "text": "Search orders",
+      "componentState": "default"
+    },
+    {
+      "id": "headers",
+      "region": "main",
+      "role": "table_header",
+      "text": "Order | Customer | Status | Amount",
+      "componentState": "default"
+    }
+  ],
+  "purpose": "Northstar order-management service, orders overview; sidebar navigation and main orders table with title, search and primary create action.",
+  "theme": {
+    "canvas": "#F6F8FB",
+    "surface": "#FFFFFF",
+    "text": "#172B4D",
+    "accent": "#2563EB",
+    "border": "#DCE3ED"
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "language": "ko",
+  "use_case": "디자인 컨퍼런스의 4:5 소셜 미디어 타이포그래피 포스터",
+  "medium": "graphic_design",
+  "taxonomy": {
+    "category": "C5"
+  },
+  "scene": {
+    "environment": "평면 인쇄 포스터 캔버스",
+    "background": "짙은 남청색 단색 바탕과 캔버스 너비 5% 간격의 얇은 좌표 격자",
+    "atmosphere": "왼쪽의 큰 문자 질량과 오른쪽 상단 신호 원판 사이의 높은 시각 장력",
+    "time_of_day": null,
+    "weather": null
+  },
+  "subjects": [
+    {
+      "id": "signal_disc",
+      "count": 1,
+      "description": "주황색 원형 신호 디스크와 중심을 통과하는 흰색 수직선",
+      "placement": {
+        "zone": "custom",
+        "x_percent": 61,
+        "y_percent": 19,
+        "width_percent": 25,
+        "height_percent": 20
+      },
+      "scale": "원 지름은 캔버스 너비의 22%",
+      "pose": "기울기 없는 정면 원형",
+      "gaze": "수직선은 원 중심을 오차 1% 이내로 통과",
+      "action": "정지",
+      "appearance": "불투명한 주황색 평면과 흰색 수직선",
+      "distinguishing_features": [
+        "원형 외곽은 연속된 매끈한 곡선",
+        "수직선 두께는 캔버스 너비의 0.8%"
+      ]
+    }
+  ],
+  "composition": {
+    "framing": "캔버스 전체를 사용하는 4:5 포스터 레이아웃",
+    "viewpoint": "정면 직교 투영",
+    "camera_angle": "수평 및 수직 축과 평행한 정면",
+    "balance": "왼쪽 52%의 큰 타이포그래피와 오른쪽 상단 원판의 비대칭 균형",
+    "visual_hierarchy": [
+      "headline",
+      "signal_disc",
+      "date"
+    ],
+    "depth_layers": [
+      "후면은 남청색 바탕과 좌표 격자",
+      "중간은 주황색 신호 디스크",
+      "전면은 흰색 헤드라인과 날짜"
+    ],
+    "negative_space": [
+      "bottom_right"
+    ]
+  },
+  "camera": null,
+  "lighting": {
+    "key_direction": "캔버스 전체에 동일한 정면 명도",
+    "key_quality": "색면 내부 명도 편차 0%의 균일한 평면",
+    "key_temperature_kelvin": null,
+    "key_color_hex": null,
+    "key_to_fill_ratio": null,
+    "fill_description": "모든 색면이 지정 HEX와 동일한 균일 명도를 유지",
+    "rim_description": null,
+    "shadow_character": "각 요소 경계는 그림자 대신 1px 이하의 선명한 색상 전이",
+    "exposure": "흰색 글자 가장자리와 남청색 배경의 명도 대비를 80% 이상 유지"
+  },
+  "color": {
+    "palette": [
+      {
+        "hex": "#0B1633",
+        "usage": "배경 72%",
+        "proportion_percent": 72
+      },
+      {
+        "hex": "#F3F5F2",
+        "usage": "헤드라인, 날짜, 격자 18%",
+        "proportion_percent": 18
+      },
+      {
+        "hex": "#FF5A1F",
+        "usage": "신호 디스크 10%",
+        "proportion_percent": 10
+      }
+    ],
+    "harmony": "남청색과 주황색의 보색 관계, 흰색은 정보 계층 분리",
+    "contrast": "흰색 문자와 남청색 배경 사이 높은 명도 대비",
+    "saturation": "남청색과 주황색은 지정 HEX 채도를 유지",
+    "photo_lut": null
+  },
+  "surfaces": [
+    {
+      "id": "poster_surface",
+      "material": "무코팅 인쇄지",
+      "finish": "평면 무광",
+      "micro_detail": "0.1mm 이하의 균일한 종이 섬유",
+      "light_response": "거울 반사 없이 전 방향으로 균일한 확산 반사"
+    }
+  ],
+  "text_elements": [
+    {
+      "id": "headline",
+      "role": "headline",
+      "lines": [
+        "URBAN",
+        "SIGNAL"
+      ],
+      "language": "en",
+      "placement": {
+        "zone": "custom",
+        "x_percent": 8,
+        "y_percent": 12,
+        "width_percent": 52,
+        "height_percent": 38
+      },
+      "font_family": "condensed geometric sans-serif with vertical terminals",
+      "weight": "black",
+      "alignment": "left aligned with a shared vertical baseline",
+      "size_percent": 12,
+      "color_hex": "#F3F5F2",
+      "letter_spacing": "tight kerning at 1% of cap height",
+      "treatment": "parallel shallow diagonal cuts rising rightward at 2 degrees across the lower third of each complete text line; every cut segment shifts right by 0.4% of canvas width; preserve fully legible original glyph skeletons",
+      "spelling_hint": "U-R-B-A-N / S-I-G-N-A-L",
+      "separator_count": 3
+    },
+    {
+      "id": "date",
+      "role": "caption",
+      "lines": [
+        "2026.09.18"
+      ],
+      "language": "en",
+      "placement": {
+        "zone": "custom",
+        "x_percent": 8,
+        "y_percent": 83,
+        "width_percent": 34,
+        "height_percent": 5
+      },
+      "font_family": "monospace sans-serif numerals",
+      "weight": "medium",
+      "alignment": "left aligned",
+      "size_percent": 3,
+      "color_hex": "#F3F5F2",
+      "letter_spacing": "uniform spacing at 8% of numeral width",
+      "treatment": "flat unmodified glyphs on one horizontal baseline",
+      "spelling_hint": "2-0-2-6 period 0-9 period 1-8"
+    }
+  ],
+  "constraints": {
+    "required_elements": [
+      "헤드라인은 지정된 두 줄 구조",
+      "좌표 격자는 수평과 수직 모두 캔버스 너비 5% 간격",
+      "신호 디스크는 원형 비율 유지"
+    ],
+    "excluded_elements": [
+      "지정되지 않은 문자",
+      "워터마크",
+      "입체 돌출",
+      "사진 배경"
+    ],
+    "safety_tier": 1,
+    "adult_subjects_only": false,
+    "original_characters_only": false,
+    "clean_unbranded_finish": true
+  },
+  "output": {
+    "width": 1024,
+    "height": 1280,
+    "background": "opaque",
+    "format": "png",
+    "backend": "codex-subscription",
+    "detail": "high"
+  }
+}

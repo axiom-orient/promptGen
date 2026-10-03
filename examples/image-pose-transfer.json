@@ -1,0 +1,155 @@
+{
+  "language": "ko",
+  "render_profile": "pose_transfer",
+  "task_mode": "composite",
+  "references": [
+    {
+      "index": 1,
+      "role": "pose",
+      "description": "전신이 모두 보이는 원본 동작 사진. 실제 관절 위치, 접지, 체중, 몸과 머리 방향, 시선, 카메라 각도와 가림 관계의 최종 권위다.",
+      "use_for": [
+        "전신 실루엣과 발 위치",
+        "어깨-팔꿈치-손목-손 및 골반-무릎-발목-발 관절 사슬",
+        "몸 방향, 머리 회전, 눈동자 시선, 원근과 가림"
+      ]
+    },
+    {
+      "index": 2,
+      "role": "subject",
+      "description": "목표 캐릭터 시트. 얼굴과 기본 표정, 신체 비율, 머리, 의상, 색과 일러스트 화풍의 최종 권위다.",
+      "use_for": [
+        "캐릭터 얼굴과 표정",
+        "신체 비율, 머리와 의상",
+        "선화, 채색과 재질 표현"
+      ]
+    }
+  ],
+  "change_contract": {
+    "change_only": [
+      "원본 동작 사진의 인물을 캐릭터 시트의 동일한 캐릭터와 화풍으로 표현"
+    ],
+    "preserve": [
+      "원본 동작 사진의 실제 전신 자세, 좌우, 접지, 체중, 관절 각도, 몸과 머리 방향, 시선, 카메라와 가림",
+      "캐릭터 시트의 얼굴, 기본 표정, 체형, 머리, 의상, 색과 화풍",
+      "한 명의 전신만 보이고 문자, 로고와 워터마크가 없는 상태"
+    ]
+  },
+  "use_case": "원본 동작의 자세와 시선을 정확히 유지하면서 캐릭터 시트의 동일한 캐릭터로 재구성",
+  "medium": "illustration",
+  "taxonomy": {
+    "category": "C10"
+  },
+  "scene": {
+    "environment": "캐릭터 한 명만 놓이는 단순한 스튜디오형 캔버스",
+    "background": "피사체와 명확히 분리되는 균일한 단색 불투명 배경",
+    "atmosphere": "동작 판독을 방해하는 소품과 효과가 없는 정돈된 화면"
+  },
+  "subjects": [
+    {
+      "id": "pose_matched_character",
+      "count": 1,
+      "description": "image_2 캐릭터의 정체성과 외형을 그대로 가진 한 명의 전신 캐릭터",
+      "placement": {
+        "zone": "custom",
+        "x_percent": 5,
+        "y_percent": 5,
+        "width_percent": 90,
+        "height_percent": 90
+      },
+      "scale": "머리끝부터 양발 끝까지 프레임 안에 들어오며 원본 동작 사진과 같은 전신 비율",
+      "pose": "image_1의 실제 발 위치, 접지, 체중 중심, 골반과 몸통 각도, 양팔과 양다리의 모든 관절 위치, 손모양과 발끝 방향을 픽셀 기준으로 따라감",
+      "gaze": "image_1의 몸 방향, 머리 회전 각도와 눈동자가 바라보는 방향을 그대로 유지",
+      "action": "image_1에 포착된 동작 단계와 힘의 방향을 정지 프레임으로 재현",
+      "face": "image_2의 얼굴 형태와 기본 표정을 유지하고 image_1의 머리 방향과 시선만 적용",
+      "hair": "image_2의 머리 형태와 색을 유지하며 동작에 따른 겹침만 물리적으로 반영",
+      "appearance": "image_2의 신체 비율, 의상, 색, 선화와 채색 방식을 일관되게 유지",
+      "distinguishing_features": [
+        "좌우 반전 없이 인물 기준 왼쪽과 오른쪽을 유지",
+        "카메라에 가까운 팔다리와 보이는 신체 측면이 image_1과 같음",
+        "캐릭터 얼굴과 표정은 image_2에서만 가져옴"
+      ]
+    }
+  ],
+  "composition": {
+    "framing": "원본 동작 사진과 같은 전신 프레이밍",
+    "viewpoint": "원본 동작 사진의 관찰 높이와 수평 방향",
+    "camera_angle": "원본 동작 사진과 같은 상하·좌우 카메라 각도",
+    "balance": "전신 외곽과 사지 끝이 잘리지 않고 원본의 중심과 여백 관계를 유지",
+    "visual_hierarchy": [
+      "pose_matched_character"
+    ],
+    "depth_layers": [
+      "전경·중경 겹침과 원근 단축은 image_1을 따름",
+      "후경은 균일한 단색 배경"
+    ],
+    "negative_space": []
+  },
+  "camera": {
+    "field_of_view": "image_1의 전신 크기와 원근 왜곡을 유지",
+    "perspective": "image_1의 가까운 팔다리와 먼 팔다리 사이 크기 차이를 유지",
+    "depth_of_field": "캐릭터 전신과 양손·양발이 모두 선명",
+    "focus": "얼굴과 동작을 수행하는 팔다리를 함께 판독할 수 있는 초점",
+    "motion_rendering": "정지 동작이며 모션 블러와 속도선 없음"
+  },
+  "lighting": {
+    "key_direction": "화면 왼쪽 위에서 오는 넓은 주광",
+    "key_quality": "관절과 사지 외곽을 가리지 않는 부드러운 확산광",
+    "key_temperature_kelvin": 5200,
+    "key_color_hex": "#FFF4E8",
+    "key_to_fill_ratio": 2.0,
+    "fill_description": "카메라 정면의 중성 보조광이 의상과 팔다리 내부 디테일을 보존",
+    "rim_description": "배경에서 전신 외곽을 분리하는 얇고 균일한 림 라이트",
+    "shadow_character": "발의 접지 위치만 설명하는 작고 부드러운 접촉 그림자",
+    "exposure": "얼굴, 손모양, 발끝과 의상 경계의 세부가 소실되지 않음"
+  },
+  "color": {
+    "palette": [
+      {
+        "hex": "#F4EBDD",
+        "usage": "캐릭터의 밝은 피부와 의상 명부",
+        "proportion_percent": 35
+      },
+      {
+        "hex": "#24314A",
+        "usage": "선화와 의상 암부",
+        "proportion_percent": 35
+      },
+      {
+        "hex": "#57C785",
+        "usage": "피사체와 분리되는 단색 배경",
+        "proportion_percent": 30
+      }
+    ],
+    "harmony": "image_2의 캐릭터 색 관계를 우선하고 배경만 명확히 분리",
+    "contrast": "팔다리 겹침, 손모양과 발끝 방향이 판독되는 명도 대비",
+    "saturation": "image_2의 채도를 유지하고 추가 색조 효과를 적용하지 않음"
+  },
+  "surfaces": [],
+  "text_elements": [],
+  "constraints": {
+    "required_elements": [
+      "한 명의 캐릭터 전신과 양손·양발 전체",
+      "image_1과 동일한 동작, 좌우, 몸 방향, 머리 회전과 시선",
+      "image_2와 동일한 캐릭터 얼굴, 기본 표정, 체형, 머리와 의상"
+    ],
+    "excluded_elements": [
+      "좌우 반전",
+      "캐릭터 시트의 기본 자세로 정규화",
+      "추가 인물과 추가 팔다리",
+      "해부학적으로 연결되지 않은 손가락과 관절",
+      "문자, 번호, 로고, 워터마크, 모션 블러"
+    ],
+    "safety_tier": 0,
+    "adult_subjects_only": false,
+    "original_characters_only": true,
+    "clean_unbranded_finish": true
+  },
+  "output": {
+    "width": 1024,
+    "height": 1024,
+    "background": "opaque",
+    "format": "png",
+    "backend": "codex-subscription",
+    "detail": "high"
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "schema": "promptgen-screen-v1",
+  "fidelity": "styled",
+  "contentMode": "provided_synthetic",
+  "viewport": {
+    "width": 1200,
+    "height": 800
+  },
+  "raster": {
+    "width": 1536,
+    "height": 1024
+  },
+  "regions": [
+    {
+      "id": "main",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1200,
+        "height": 800
+      },
+      "dataState": "empty",
+      "stateText": "",
+      "rows": []
+    }
+  ],
+  "elements": [
+    {
+      "id": "brand",
+      "region": "main",
+      "role": "brand",
+      "text": "Cedar",
+      "componentState": "default",
+      "bounds": {
+        "x": 96,
+        "y": 48,
+        "width": 180,
+        "height": 40
+      }
+    },
+    {
+      "id": "title",
+      "region": "main",
+      "role": "heading",
+      "text": "Welcome back",
+      "componentState": "default",
+      "bounds": {
+        "x": 400,
+        "y": 180,
+        "width": 400,
+        "height": 56
+      }
+    },
+    {
+      "id": "email_label",
+      "region": "main",
+      "role": "label",
+      "text": "Email address",
+      "componentState": "default"
+    },
+    {
+      "id": "email",
+      "region": "main",
+      "role": "input",
+      "text": "alex@example.test",
+      "componentState": "focused",
+      "bounds": {
+        "x": 400,
+        "y": 300,
+        "width": 400,
+        "height": 52
+      }
+    },
+    {
+      "id": "password_label",
+      "region": "main",
+      "role": "label",
+      "text": "Password",
+      "componentState": "default"
+    },
+    {
+      "id": "password",
+      "region": "main",
+      "role": "input",
+      "text": "••••••••",
+      "componentState": "default",
+      "bounds": {
+        "x": 400,
+        "y": 410,
+        "width": 400,
+        "height": 52
+      }
+    },
+    {
+      "id": "submit",
+      "region": "main",
+      "role": "button",
+      "text": "Sign in",
+      "componentState": "default",
+      "bounds": {
+        "x": 400,
+        "y": 506,
+        "width": 400,
+        "height": 52
+      }
+    },
+    {
+      "id": "recover",
+      "region": "main",
+      "role": "button",
+      "text": "Forgot password?",
+      "componentState": "default"
+    }
+  ],
+  "purpose": "Cedar account sign-in screen. A focused authentication form, not a landing page.",
+  "theme": {
+    "canvas": "#F6F8FB",
+    "surface": "#FFFFFF",
+    "text": "#172B4D",
+    "accent": "#2563EB",
+    "border": "#DCE3ED"
+  },
+  "brief": {
+    "audience": "Returning account holders",
+    "userTask": "Sign in to continue to the workspace",
+    "primaryAction": "submit",
+    "density": "comfortable"
+  }
+}

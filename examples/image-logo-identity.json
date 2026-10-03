@@ -1,0 +1,124 @@
+{
+  "language": "ko",
+  "use_case": "opaque PNG logo identity concept for a coffee brand mark",
+  "medium": "graphic_design",
+  "taxonomy": {
+    "category": "C4"
+  },
+  "scene": {
+    "environment": "neutral brand presentation board",
+    "background": "opaque warm white paper-like field",
+    "atmosphere": "clear silhouette and spacing study for a brand mark",
+    "time_of_day": null,
+    "weather": null
+  },
+  "subjects": [
+    {
+      "id": "brand_mark",
+      "count": 1,
+      "description": "single abstract coffee leaf and cup mark, no readable wordmark",
+      "placement": {
+        "zone": "center"
+      },
+      "scale": "mark occupies 42% of canvas width",
+      "pose": "front-facing flat silhouette",
+      "gaze": "not applicable",
+      "action": "static identity mark",
+      "appearance": "deep green and warm ochre opaque flat shapes",
+      "distinguishing_features": [
+        "one continuous outer silhouette",
+        "clear counter-space and repeatable spacing"
+      ]
+    }
+  ],
+  "composition": {
+    "framing": "centered 1:1 brand-mark concept board",
+    "viewpoint": "straight-on orthographic",
+    "camera_angle": "parallel to canvas",
+    "balance": "centered silhouette with generous surrounding clear space",
+    "visual_hierarchy": [
+      "brand_mark"
+    ],
+    "depth_layers": [
+      "opaque background plane",
+      "flat mark plane"
+    ],
+    "negative_space": [
+      "top_left",
+      "top_right",
+      "bottom_left",
+      "bottom_right"
+    ]
+  },
+  "camera": null,
+  "lighting": {
+    "key_direction": "캔버스 전체에 동일한 정면 명도",
+    "key_quality": "색면 내부 명도 편차 0%의 균일한 평면",
+    "key_temperature_kelvin": null,
+    "key_color_hex": null,
+    "key_to_fill_ratio": null,
+    "fill_description": "모든 색면이 지정 HEX와 동일한 균일 명도를 유지",
+    "rim_description": null,
+    "shadow_character": "각 요소 경계는 그림자 대신 1px 이하의 선명한 색상 전이",
+    "exposure": "흰색 글자 가장자리와 남청색 배경의 명도 대비를 80% 이상 유지"
+  },
+  "color": {
+    "palette": [
+      {
+        "hex": "#0B1633",
+        "usage": "배경 72%",
+        "proportion_percent": 72
+      },
+      {
+        "hex": "#F3F5F2",
+        "usage": "헤드라인, 날짜, 격자 18%",
+        "proportion_percent": 18
+      },
+      {
+        "hex": "#FF5A1F",
+        "usage": "신호 디스크 10%",
+        "proportion_percent": 10
+      }
+    ],
+    "harmony": "남청색과 주황색의 보색 관계, 흰색은 정보 계층 분리",
+    "contrast": "흰색 문자와 남청색 배경 사이 높은 명도 대비",
+    "saturation": "남청색과 주황색은 지정 HEX 채도를 유지",
+    "photo_lut": null
+  },
+  "surfaces": [
+    {
+      "id": "poster_surface",
+      "material": "무코팅 인쇄지",
+      "finish": "평면 무광",
+      "micro_detail": "0.1mm 이하의 균일한 종이 섬유",
+      "light_response": "거울 반사 없이 전 방향으로 균일한 확산 반사"
+    }
+  ],
+  "text_elements": [],
+  "constraints": {
+    "required_elements": [
+      "opaque PNG concept handoff",
+      "one coherent brand mark silhouette",
+      "clear spacing and color roles"
+    ],
+    "excluded_elements": [
+      "SVG",
+      "vector final asset",
+      "transparent background",
+      "readable invented wordmark"
+    ],
+    "safety_tier": 0,
+    "adult_subjects_only": false,
+    "original_characters_only": false,
+    "clean_unbranded_finish": true
+  },
+  "output": {
+    "width": 1024,
+    "height": 1024,
+    "background": "opaque",
+    "format": "png",
+    "backend": "codex-subscription",
+    "detail": "high"
+  },
+  "profile": "logo_identity"
+}

@@ -1,0 +1,14 @@
+{
+  "format": "promptgen-verification/4",
+  "scope": "complete local gate: check/test/fmt/clippy/doc/build/audits/CLI/web smoke",
+  "status": "CURRENT_LOCAL_GATE_COMPLETED",
+  "revision": "promptgen-4.0.0-20261001.2",
+  "source_tree_sha256": "6c752de597b0c9f8b329fe25b1c99052a95eca6b597a6c668e1288ad824238a5",
+  "checks": [
+    {
+      "command": "bash scripts/verify.sh",
+      "exitCode": 0,
+      "scope": "check/test/fmt/clippy/doc/build/audits/CLI/web smoke"
+    }
+  ]
+}

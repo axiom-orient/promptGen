@@ -1,0 +1,379 @@
+{
+  "schema_version": 5,
+  "source": {
+    "repository": "promptGen",
+    "license": "BSD-2-Clause",
+    "adaptation": "Six promptGen-authored outcome contracts consolidate the official Codex imagegen generate taxonomy into a one-step product picker. Style, mood, movement, and typography technique are expressed through typed request fields instead of parallel catalog categories."
+  },
+  "entries": [
+    {
+      "id": "C1",
+      "name_ko": "인물·라이프스타일",
+      "name_en": "People and Lifestyle",
+      "intent": "인물, 패션, 프로필, 라이프스타일 사진처럼 사람의 정체성·행동·환경 관계가 핵심인 결과물",
+      "recipe": [
+        "인물의 수, 연령대, 외형, 의상, 자세와 행동을 먼저 고정한다.",
+        "환경과 카메라 거리가 인물의 맥락을 설명하도록 구성한다.",
+        "피부·원단·머리카락과 실제 광원 반응을 보존한다."
+      ],
+      "default_safety_tier": 0,
+      "source_path": "openai/codex:codex-rs/skills/src/assets/samples/imagegen/SKILL.md",
+      "source_sha256": "59981d23519222bcecf1be48bb37730bbc50539ceb0e35ad09fcef98a3df19d3",
+      "prompt_directives": [
+        {
+          "slot": "subject",
+          "text": "Keep each person's stated identity, age range, body proportions, face geometry, hair, wardrobe, pose, gaze, and action mutually consistent."
+        },
+        {
+          "slot": "camera",
+          "text": "Use a camera distance and viewpoint that make the person, action, and environmental context readable without accidental cropping or perspective distortion."
+        },
+        {
+          "slot": "lighting",
+          "text": "Preserve believable skin, hair, fabric, and environmental light response with clear subject separation and natural tonal detail."
+        }
+      ],
+      "profiles": [
+        "standard"
+      ],
+      "text_requirement": "optional",
+      "repetition_text": false,
+      "suggested_aspect_ratios": [
+        "4:5",
+        "3:4",
+        "1:1"
+      ],
+      "tier_1": "결과물",
+      "tier_2": "인물·사진",
+      "tier_3": null,
+      "asset_path": "assets/category/people-lifestyle.png",
+      "reference_text_mode": "none",
+      "reference_exact_text": []
+    },
+    {
+      "id": "C4",
+      "name_ko": "제품·브랜드",
+      "name_en": "Product and Brand",
+      "intent": "제품 사진, 패키지, 브랜딩 목업, 제품 구조 설명처럼 형태·재질·브랜드 적용이 핵심인 결과물",
+      "recipe": [
+        "제품 하나의 형태, 기능, 재질과 마감 상태를 정확히 고정한다.",
+        "히어로 뷰와 보조 뷰의 역할을 분리한다.",
+        "브랜드 표식과 라벨은 사용자가 제공한 경우에만 정확히 적용한다."
+      ],
+      "default_safety_tier": 0,
+      "source_path": "openai/codex:codex-rs/skills/src/assets/samples/imagegen/SKILL.md",
+      "source_sha256": "59981d23519222bcecf1be48bb37730bbc50539ceb0e35ad09fcef98a3df19d3",
+      "prompt_directives": [
+        {
+          "slot": "subject",
+          "text": "Keep the product silhouette, dimensions, controls, openings, label placement, and functional parts coherent across every visible view."
+        },
+        {
+          "slot": "composition",
+          "text": "Establish one unmistakable hero view and give every secondary view, callout, package surface, or brand application one noncompeting role."
+        },
+        {
+          "slot": "material",
+          "text": "Differentiate each declared material and finish through physically plausible edge behavior, texture scale, reflection, refraction, and contact shadow."
+        }
+      ],
+      "profiles": [
+        "standard",
+        "logo_identity",
+        "app_icon"
+      ],
+      "text_requirement": "optional",
+      "repetition_text": false,
+      "suggested_aspect_ratios": [
+        "1:1",
+        "4:5",
+        "16:9"
+      ],
+      "tier_1": "결과물",
+      "tier_2": "제품·브랜드",
+      "tier_3": null,
+      "asset_path": "assets/category/product-brand.png",
+      "reference_text_mode": "none",
+      "reference_exact_text": []
+    },
+    {
+      "id": "C5",
+      "name_ko": "광고·포스터",
+      "name_en": "Campaign and Poster",
+      "intent": "캠페인, 소셜 광고, 포스터, 프로모션처럼 한 메시지와 강한 시각 위계가 핵심인 결과물",
+      "recipe": [
+        "대상과 한 가지 핵심 메시지를 먼저 정한다.",
+        "히어로 하나와 문구 체계 하나만 주 초점으로 사용한다.",
+        "실제 게재 비율과 안전 여백에서 축소 가독성을 확인한다."
+      ],
+      "default_safety_tier": 0,
+      "source_path": "openai/codex:codex-rs/skills/src/assets/samples/imagegen/SKILL.md",
+      "source_sha256": "59981d23519222bcecf1be48bb37730bbc50539ceb0e35ad09fcef98a3df19d3",
+      "prompt_directives": [
+        {
+          "slot": "composition",
+          "text": "Build the campaign around one dominant hero and one clear reading path, with controlled negative space for supplied copy or channel-safe cropping."
+        },
+        {
+          "slot": "typography",
+          "text": "When exact copy is supplied, preserve it verbatim and separate headline, support line, metadata, and call to action through scale and alignment."
+        },
+        {
+          "slot": "constraint",
+          "text": "Keep brand cues and supporting elements subordinate to one message that remains legible and recognizable at thumbnail size."
+        }
+      ],
+      "profiles": [
+        "standard",
+        "travel_journal"
+      ],
+      "text_requirement": "recommended",
+      "repetition_text": false,
+      "suggested_aspect_ratios": [
+        "4:5",
+        "2:3",
+        "1:1",
+        "9:16"
+      ],
+      "tier_1": "결과물",
+      "tier_2": "광고·포스터",
+      "tier_3": null,
+      "asset_path": "assets/category/marketing-poster.png",
+      "reference_text_mode": "none",
+      "reference_exact_text": []
+    },
+    {
+      "id": "C6",
+      "name_ko": "정보·UI",
+      "name_en": "Information and UI",
+      "intent": "인포그래픽, 프레젠테이션, 교육 도해, UI 목업처럼 정보 구조·상태·읽기 순서가 핵심인 결과물",
+      "recipe": [
+        "전달할 사실, 단계, 상태와 읽기 순서를 먼저 고정한다.",
+        "화면 또는 캔버스의 실제 사용 맥락을 명시한다.",
+        "텍스트·아이콘·도표 각각에 하나의 의미만 부여한다."
+      ],
+      "default_safety_tier": 0,
+      "source_path": "openai/codex:codex-rs/skills/src/assets/samples/imagegen/SKILL.md",
+      "source_sha256": "59981d23519222bcecf1be48bb37730bbc50539ceb0e35ad09fcef98a3df19d3",
+      "prompt_directives": [
+        {
+          "slot": "composition",
+          "text": "Arrange the requested sections, states, steps, controls, or data groups in one explicit reading order with visible hierarchy and adequate spacing."
+        },
+        {
+          "slot": "typography",
+          "text": "Use discrete title, heading, label, annotation, and data scales so every supplied fact has one clear semantic level."
+        },
+        {
+          "slot": "constraint",
+          "text": "Keep each icon, connector, chart mark, and interface control tied to one meaning and inside the intended canvas or device boundary."
+        }
+      ],
+      "profiles": [
+        "standard",
+        "app_web_ui",
+        "information_design"
+      ],
+      "text_requirement": "recommended",
+      "repetition_text": false,
+      "suggested_aspect_ratios": [
+        "16:9",
+        "4:3",
+        "2:3",
+        "1:1"
+      ],
+      "tier_1": "결과물",
+      "tier_2": "정보·UI",
+      "tier_3": null,
+      "asset_path": "assets/category/information-ui.png",
+      "reference_text_mode": "none",
+      "reference_exact_text": []
+    },
+    {
+      "id": "C10",
+      "name_ko": "일러스트·스토리",
+      "name_en": "Illustration and Story",
+      "intent": "일러스트, 만화, 캐릭터 시트, 스티커, 스토리보드처럼 반복 정체성과 서사 흐름이 핵심인 결과물",
+      "recipe": [
+        "캐릭터 또는 대상의 고정 정체성 블록을 먼저 정의한다.",
+        "패널·변형·장면마다 하나의 사건이나 감정만 배정한다.",
+        "모든 반복 등장 사이에서 비율·의상·소품·팔레트를 보존한다."
+      ],
+      "default_safety_tier": 0,
+      "source_path": "openai/codex:codex-rs/skills/src/assets/samples/imagegen/SKILL.md",
+      "source_sha256": "59981d23519222bcecf1be48bb37730bbc50539ceb0e35ad09fcef98a3df19d3",
+      "prompt_directives": [
+        {
+          "slot": "subject",
+          "text": "Lock recurring character or object identity before varying pose, expression, action, viewpoint, or narrative beat."
+        },
+        {
+          "slot": "composition",
+          "text": "Give every panel, frame, sticker, view, or scene one distinct role while preserving a clear sequence and consistent scale."
+        },
+        {
+          "slot": "constraint",
+          "text": "Preserve body proportions, face geometry, costume, props, line language, and palette roles across every repeated appearance."
+        }
+      ],
+      "profiles": [
+        "standard",
+        "character_pose",
+        "poomsae_pose"
+      ],
+      "text_requirement": "optional",
+      "repetition_text": false,
+      "suggested_aspect_ratios": [
+        "2:3",
+        "4:5",
+        "1:1",
+        "16:9"
+      ],
+      "tier_1": "결과물",
+      "tier_2": "일러스트·스토리",
+      "tier_3": null,
+      "asset_path": "assets/category/illustration-story.png",
+      "reference_text_mode": "none",
+      "reference_exact_text": []
+    },
+    {
+      "id": "C11",
+      "name_ko": "컨셉·엔터테인먼트",
+      "name_en": "Concept and Entertainment",
+      "intent": "시네마틱 키아트, 게임 콘셉트, 3D 스타일 프레임, 역사 장면처럼 세계관·분위기·공간 서사가 핵심인 결과물",
+      "recipe": [
+        "장르, 세계관, 시간대와 장소를 한 문장으로 고정한다.",
+        "히어로 실루엣과 전경·중경·후경의 공간 관계를 설계한다.",
+        "광원과 대기 효과가 장르와 물리적으로 맞도록 제한한다."
+      ],
+      "default_safety_tier": 0,
+      "source_path": "openai/codex:codex-rs/skills/src/assets/samples/imagegen/SKILL.md",
+      "source_sha256": "59981d23519222bcecf1be48bb37730bbc50539ceb0e35ad09fcef98a3df19d3",
+      "prompt_directives": [
+        {
+          "slot": "scene",
+          "text": "Make the stated world, period, location, weather, and practical sources mutually consistent and visible in the environment."
+        },
+        {
+          "slot": "composition",
+          "text": "Build one readable hero silhouette across foreground, hero plane, and environmental depth instead of combining unrelated spectacle."
+        },
+        {
+          "slot": "lighting",
+          "text": "Use one motivated genre lighting grammar with coherent shadow direction, atmosphere, color separation, and material response."
+        }
+      ],
+      "profiles": [
+        "standard"
+      ],
+      "text_requirement": "optional",
+      "repetition_text": false,
+      "suggested_aspect_ratios": [
+        "16:9",
+        "3:2",
+        "2:3",
+        "1:1"
+      ],
+      "tier_1": "결과물",
+      "tier_2": "컨셉·엔터테인먼트",
+      "tier_3": null,
+      "asset_path": "assets/category/concept-entertainment.png",
+      "reference_text_mode": "none",
+      "reference_exact_text": []
+    }
+  ],
+  "method_sources": [
+    {
+      "repository": "openai/codex",
+      "artifact_sha256": "59981d23519222bcecf1be48bb37730bbc50539ceb0e35ad09fcef98a3df19d3",
+      "license": "Apache-2.0",
+      "usage": "Generate use-case coverage, structured image prompt scaffolding, and single-target iteration principles; no prompt example was copied."
+    }
+  ],
+  "navigation": {
+    "tier_1": [
+      {
+        "id": "output",
+        "name_ko": "대표 결과물"
+      }
+    ],
+    "normalization_revision": "2026-07-30-outcome-v1",
+    "research_sources": [
+      {
+        "url": "https://github.com/openai/codex/blob/main/codex-rs/skills/src/assets/samples/imagegen/SKILL.md",
+        "license": "Apache-2.0",
+        "access_verdict": "strong_ok",
+        "use": "Official outcome-based generate and edit taxonomy"
+      },
+      {
+        "url": "https://developers.openai.com/cookbook/examples/multimodal/image-gen-models-prompting-guide",
+        "license": "official documentation",
+        "access_verdict": "strong_ok",
+        "use": "Structured prompt order, explicit invariants, and targeted iteration"
+      },
+      {
+        "url": "https://developers.openai.com/cookbook/examples/multimodal/image_evals",
+        "license": "official documentation",
+        "access_verdict": "strong_ok",
+        "use": "Hard-constraint evaluation and workflow-specific visual gates"
+      }
+    ],
+    "consolidations": [
+      {
+        "canonical_id": "C1",
+        "covers": [
+          "photorealistic-natural",
+          "portrait",
+          "fashion",
+          "lifestyle"
+        ]
+      },
+      {
+        "canonical_id": "C4",
+        "covers": [
+          "product-mockup",
+          "logo-brand",
+          "packaging",
+          "catalog"
+        ]
+      },
+      {
+        "canonical_id": "C5",
+        "covers": [
+          "ads-marketing",
+          "poster",
+          "social",
+          "campaign"
+        ]
+      },
+      {
+        "canonical_id": "C6",
+        "covers": [
+          "ui-mockup",
+          "infographic-diagram",
+          "scientific-educational",
+          "productivity-visual"
+        ]
+      },
+      {
+        "canonical_id": "C10",
+        "covers": [
+          "illustration-story",
+          "comic",
+          "character",
+          "storyboard"
+        ]
+      },
+      {
+        "canonical_id": "C11",
+        "covers": [
+          "stylized-concept",
+          "historical-scene",
+          "cinematic",
+          "game-art"
+        ]
+      }
+    ],
+    "interaction": "one_step_representative_output_cards"
+  }
+}

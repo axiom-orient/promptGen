@@ -1,0 +1,69 @@
+{
+  "format": "promptgen-representative-image-qa/1",
+  "reviewed_at": "2026-07-30",
+  "method": "Manual visual review of the final manifest-bound PNG bytes at full frame. This record verifies observed reference-card content, not external model prompt transport.",
+  "cases": [
+    {
+      "id": "C1",
+      "asset_sha256": "c3e4ff81f95835a15ac272695125dfb7b9cce5d16bec523daa32d265b4f2dba0",
+      "status": "PASS",
+      "criteria": [
+        {"id": "person_count", "expected": "exactly 1 adult person", "observed": "1 adult person", "status": "PASS"},
+        {"id": "action", "expected": "furniture designer sketching at a studio table", "observed": "designer draws a chair while handling a wood sample", "status": "PASS"},
+        {"id": "text_exclusion", "expected": "no readable text", "observed": "no readable text", "status": "PASS"}
+      ]
+    },
+    {
+      "id": "C4",
+      "asset_sha256": "48361a32afd4b35e527b2ce7958647ec335d9a416105b0aaf32b3fb7638656c4",
+      "status": "PASS",
+      "criteria": [
+        {"id": "object_count", "expected": "exactly 1 speaker and 1 package", "observed": "1 speaker and 1 package", "status": "PASS"},
+        {"id": "package_marking", "expected": "plain unprinted and unbranded package", "observed": "continuous plain recycled-paper face with no mark or text", "status": "PASS"},
+        {"id": "materials", "expected": "polymer, fabric, aluminum, and paper remain distinct", "observed": "four material responses are visually distinct", "status": "PASS"}
+      ]
+    },
+    {
+      "id": "C5",
+      "asset_sha256": "dc550e78474d507ad198c8b990153cdba3f94a9216eebd65b5124a442e007495",
+      "status": "PASS",
+      "criteria": [
+        {"id": "hero_count", "expected": "exactly 1 unbranded can", "observed": "1 unbranded can", "status": "PASS"},
+        {"id": "slice_count", "expected": "exactly 3 citrus slices", "observed": "3 citrus slices", "status": "PASS"},
+        {"id": "campaign_layout", "expected": "one water arc and empty copy-safe zone", "observed": "one continuous water arc and a large empty left zone", "status": "PASS"},
+        {"id": "text_exclusion", "expected": "no readable text", "observed": "no readable text", "status": "PASS"}
+      ]
+    },
+    {
+      "id": "C6",
+      "asset_sha256": "1efe7669ec9547fa045622b43635f5539a41cbcf41014b31c688bd743d9e7b0b",
+      "status": "PASS",
+      "criteria": [
+        {"id": "device_views", "expected": "desktop monitor and phone", "observed": "1 desktop monitor and 1 phone", "status": "PASS"},
+        {"id": "data_point_count", "expected": "exactly 6 points in the desktop hero chart", "observed": "6 plotted points", "status": "PASS"},
+        {"id": "pseudo_writing_exclusion", "expected": "icons, charts, and blank bars only", "observed": "geometric icons, charts, and blank bars with no pseudo-writing", "status": "PASS"}
+      ]
+    },
+    {
+      "id": "C10",
+      "asset_sha256": "87f27b560e2b1bc45c7d11180edc2fa5e598c01434a8299f027e989ac9fb808b",
+      "status": "PASS",
+      "criteria": [
+        {"id": "panel_count", "expected": "exactly 4 equal panels", "observed": "4 equal panels", "status": "PASS"},
+        {"id": "identity_count", "expected": "the same fox exactly once per panel", "observed": "1 consistent red fox in each panel", "status": "PASS"},
+        {"id": "continuity", "expected": "scarf, satchel, face, and proportions remain stable", "observed": "yellow scarf, blue satchel, face geometry, and proportions remain stable", "status": "PASS"},
+        {"id": "story_order", "expected": "discover, plant, wait, greet", "observed": "seed discovery, planting, rain waiting, and sprout greeting", "status": "PASS"}
+      ]
+    },
+    {
+      "id": "C11",
+      "asset_sha256": "8cdff8ddda630f1d5917166a1d295cd0e28f52bbea43ade5d7ec1d3a6b0f7052",
+      "status": "PASS",
+      "criteria": [
+        {"id": "explorer_count", "expected": "exactly 1 explorer", "observed": "1 explorer", "status": "PASS"},
+        {"id": "scale", "expected": "immense flooded stone ruin with readable path and focal light", "observed": "small explorer, monumental arches, flooded path, and central focal light", "status": "PASS"},
+        {"id": "text_exclusion", "expected": "no title or credits", "observed": "no title, credits, or readable text", "status": "PASS"}
+      ]
+    }
+  ]
+}

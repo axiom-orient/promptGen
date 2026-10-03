@@ -1,0 +1,11 @@
+{
+  "format": "promptgen-catalog-reference-scenarios/1",
+  "scenarios": {
+    "C1": "Create one environmental lifestyle portrait of a fictional adult furniture designer sketching at a sunlit studio table. Keep one person, one clear action, realistic skin and fabric, and no readable text.",
+    "C4": "Create one premium studio product image with exactly one fictional portable speaker and one matching unprinted package. Make polymer, woven fabric, aluminum, and recycled paper visibly distinct.",
+    "C5": "Create one bold citrus-drink campaign poster with exactly one unbranded can, three citrus slices, one dynamic water arc, and a visibly empty copy-safe zone. Add no readable text.",
+    "C6": "Create one responsive analytics interface shown on a desktop monitor and a phone. The desktop hero chart must contain exactly six data points; use only geometric icons, charts, and blank bars, with no pseudo-writing.",
+    "C10": "Create exactly four equal story panels. Show the same original red fox once per panel discovering a seed, planting it, waiting in rain, and greeting a sprout; preserve the scarf, satchel, face, and proportions.",
+    "C11": "Create one cinematic wide concept scene of a solitary fictional explorer entering an immense flooded stone ruin. Make the scale, path, atmosphere, and focal light readable without titles or credits."
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 2,
+  "source": "Six representative outcome cards generated with the Codex imagegen skill on 2026-07-30 and visually reviewed against explicit per-card contracts.",
+  "images": [
+    {
+      "number": 1,
+      "title": "C1 — 인물·라이프스타일",
+      "file": "assets/category/people-lifestyle.png",
+      "bytes": 1929221,
+      "sha256": "c3e4ff81f95835a15ac272695125dfb7b9cce5d16bec523daa32d265b4f2dba0",
+      "original_file": "people-lifestyle.png",
+      "asset_path": "assets/category/people-lifestyle.png"
+    },
+    {
+      "number": 2,
+      "title": "C4 — 제품·브랜드",
+      "file": "assets/category/product-brand.png",
+      "bytes": 2244355,
+      "sha256": "48361a32afd4b35e527b2ce7958647ec335d9a416105b0aaf32b3fb7638656c4",
+      "original_file": "product-brand.png",
+      "asset_path": "assets/category/product-brand.png"
+    },
+    {
+      "number": 3,
+      "title": "C5 — 광고·포스터",
+      "file": "assets/category/marketing-poster.png",
+      "bytes": 2237574,
+      "sha256": "dc550e78474d507ad198c8b990153cdba3f94a9216eebd65b5124a442e007495",
+      "original_file": "marketing-poster.png",
+      "asset_path": "assets/category/marketing-poster.png"
+    },
+    {
+      "number": 4,
+      "title": "C6 — 정보·UI",
+      "file": "assets/category/information-ui.png",
+      "bytes": 1331053,
+      "sha256": "1efe7669ec9547fa045622b43635f5539a41cbcf41014b31c688bd743d9e7b0b",
+      "original_file": "information-ui.png",
+      "asset_path": "assets/category/information-ui.png"
+    },
+    {
+      "number": 5,
+      "title": "C10 — 일러스트·스토리",
+      "file": "assets/category/illustration-story.png",
+      "bytes": 2929121,
+      "sha256": "87f27b560e2b1bc45c7d11180edc2fa5e598c01434a8299f027e989ac9fb808b",
+      "original_file": "illustration-story.png",
+      "asset_path": "assets/category/illustration-story.png"
+    },
+    {
+      "number": 6,
+      "title": "C11 — 컨셉·엔터테인먼트",
+      "file": "assets/category/concept-entertainment.png",
+      "bytes": 2533676,
+      "sha256": "8cdff8ddda630f1d5917166a1d295cd0e28f52bbea43ade5d7ec1d3a6b0f7052",
+      "original_file": "concept-entertainment.png",
+      "asset_path": "assets/category/concept-entertainment.png"
+    }
+  ]
+}

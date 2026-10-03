@@ -1,0 +1,17 @@
+[package]
+name = "promptgen-web"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Loopback-only promptGen web interface and guided interview API"
+
+[dependencies]
+promptgen-core = { path = "../promptgen-core" }
+promptgen-codex = { path = "../promptgen-codex" }
+
+[lib]
+path = "src/lib.rs"
+
+[lints]
+workspace = true

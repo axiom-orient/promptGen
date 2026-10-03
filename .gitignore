@@ -1,0 +1,11 @@
+/target
+/dist
+/var
+/SOURCE_MANIFEST.sha256
+/SOURCE_SNAPSHOT.json
+.claude/
+*.tmp
+*.bak
+.DS_Store
+__pycache__/
+*.py[cod]

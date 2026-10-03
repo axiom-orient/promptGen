@@ -1,0 +1,32 @@
+[workspace]
+members = [
+  "crates/promptgen-core",
+  "crates/promptgen-codex",
+  "crates/promptgen-web",
+  "crates/promptgen-mcp",
+  "crates/promptgen-cli",
+]
+resolver = "3"
+
+[workspace.package]
+version = "4.0.0"
+edition = "2024"
+rust-version = "1.97"
+license = "BSD-2-Clause"
+authors = ["promptGen contributors"]
+description = "Deterministic typed prompt compiler with optional Codex image generation"
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+unused_must_use = "deny"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = "symbols"
+# Unwinding, not `panic = "abort"`. The Studio serves one connection per thread and
+# every resource it holds — the connection slot, the single-generation guard, the
+# Codex child process, the temporary working directory — is released by `Drop`.
+# Aborting turns any single malformed request into a dead server with orphaned
+# child processes and temporary trees left behind.
+panic = "unwind"

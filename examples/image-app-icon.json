@@ -1,0 +1,128 @@
+{
+  "language": "ko",
+  "use_case": "개인 기억 앱의 앱 아이콘 마스터 콘셉트",
+  "medium": "graphic_design",
+  "taxonomy": {
+    "category": "C4"
+  },
+  "scene": {
+    "environment": "opaque neutral canvas for one isolated centered app-icon mark",
+    "background": "opaque deep navy square field",
+    "atmosphere": "quiet product-first graphic study with one dominant symbol",
+    "time_of_day": null,
+    "weather": null
+  },
+  "subjects": [
+    {
+      "id": "memory_mark",
+      "count": 1,
+      "description": "single star-shaped memory mark enclosing one folded-paper component",
+      "placement": {
+        "zone": "center"
+      },
+      "scale": "centered mark fills roughly 80% of the square canvas",
+      "pose": "front-facing simple geometric silhouette",
+      "gaze": "not applicable",
+      "action": "static core metaphor with no secondary objects",
+      "appearance": "midnight navy base, warm pale-yellow focal plane, one restrained blue secondary plane",
+      "distinguishing_features": [
+        "one dominant symbol",
+        "simple 2–3 visual planes",
+        "silhouette remains readable at 32px"
+      ]
+    }
+  ],
+  "composition": {
+    "framing": "one dominant centered mark filling roughly 80% of the square",
+    "viewpoint": "front-facing orthographic projection of the square canvas",
+    "camera_angle": "straight-on and parallel to the canvas, with no tilt or perspective distortion",
+    "balance": "one dominant centered mark with even breathing room on all sides",
+    "visual_hierarchy": [
+      "memory_mark"
+    ],
+    "depth_layers": [
+      "opaque background plane",
+      "core metaphor color plane and geometry",
+      "optional restrained secondary plane for depth"
+    ],
+    "negative_space": []
+  },
+  "camera": null,
+  "lighting": {
+    "key_direction": "front-facing even graphic light",
+    "key_quality": "crisp controlled edges with restrained dimensional shading",
+    "key_temperature_kelvin": null,
+    "key_color_hex": null,
+    "key_to_fill_ratio": null,
+    "fill_description": "opaque planes retain their specified colors without glare",
+    "rim_description": null,
+    "shadow_character": "small controlled contact shadow only where it clarifies the core geometry",
+    "exposure": "strong value contrast preserves the 32px silhouette"
+  },
+  "color": {
+    "palette": [
+      {
+        "hex": "#0B1633",
+        "usage": "opaque background plane",
+        "proportion_percent": 62
+      },
+      {
+        "hex": "#F5D76E",
+        "usage": "core metaphor focal plane",
+        "proportion_percent": 28
+      },
+      {
+        "hex": "#4E78C4",
+        "usage": "restrained secondary plane",
+        "proportion_percent": 10
+      }
+    ],
+    "harmony": "deep navy, warm pale yellow, and one restrained blue plane",
+    "contrast": "clear value separation between the centered mark and opaque background",
+    "saturation": "controlled graphic saturation with no decorative color noise",
+    "photo_lut": null
+  },
+  "surfaces": [
+    {
+      "id": "icon_artwork",
+      "material": "digital graphic artwork",
+      "finish": "soft matte with restrained dimensionality",
+      "micro_detail": "crisp component edges and no texture that breaks the silhouette",
+      "light_response": "controlled flat-to-soft shading that preserves the main shape"
+    }
+  ],
+  "text_elements": [],
+  "constraints": {
+    "required_elements": [
+      "one core metaphor and component geometry derived from the product purpose",
+      "simple 2–3 visual planes",
+      "silhouette readable at 32px",
+      "opaque PNG master concept only"
+    ],
+    "excluded_elements": [
+      "text",
+      "letters",
+      "numerals",
+      "pseudo-writing",
+      "UI screenshot",
+      "device mockup",
+      "rounded-square mask",
+      "app-icon frame",
+      "watermark",
+      "secondary objects"
+    ],
+    "safety_tier": 0,
+    "adult_subjects_only": false,
+    "original_characters_only": false,
+    "clean_unbranded_finish": true
+  },
+  "output": {
+    "width": 1024,
+    "height": 1024,
+    "background": "opaque",
+    "format": "png",
+    "backend": "codex-subscription",
+    "detail": "high"
+  },
+  "profile": "app_icon"
+}

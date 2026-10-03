@@ -1,0 +1,21 @@
+[package]
+name = "promptgen-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "promptGen command line interface"
+
+[[bin]]
+name = "promptgen"
+path = "src/main.rs"
+
+[dependencies]
+promptgen-core = { path = "../promptgen-core" }
+promptgen-codex = { path = "../promptgen-codex" }
+promptgen-mcp = { path = "../promptgen-mcp" }
+promptgen-web = { path = "../promptgen-web" }
+tokio = { version = "1.47.1", features = ["rt-multi-thread", "signal"] }
+
+[lints]
+workspace = true

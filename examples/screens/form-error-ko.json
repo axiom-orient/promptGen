@@ -1,0 +1,106 @@
+{
+  "schema": "promptgen-screen-v1",
+  "fidelity": "styled",
+  "contentMode": "provided_synthetic",
+  "viewport": {
+    "width": 1200,
+    "height": 800
+  },
+  "raster": {
+    "width": 1536,
+    "height": 1024
+  },
+  "regions": [
+    {
+      "id": "main",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1200,
+        "height": 800
+      },
+      "dataState": "error",
+      "stateText": "우편번호를 5자리 숫자로 입력하세요.",
+      "rows": []
+    }
+  ],
+  "elements": [
+    {
+      "id": "title",
+      "region": "main",
+      "role": "heading",
+      "text": "배송지 수정",
+      "componentState": "default"
+    },
+    {
+      "id": "name_label",
+      "region": "main",
+      "role": "label",
+      "text": "받는 사람",
+      "componentState": "default"
+    },
+    {
+      "id": "name",
+      "region": "main",
+      "role": "input",
+      "text": "김하늘",
+      "componentState": "default"
+    },
+    {
+      "id": "address_label",
+      "region": "main",
+      "role": "label",
+      "text": "주소",
+      "componentState": "default"
+    },
+    {
+      "id": "address",
+      "region": "main",
+      "role": "input",
+      "text": "서울시 예시로 12",
+      "componentState": "default"
+    },
+    {
+      "id": "postal_label",
+      "region": "main",
+      "role": "label",
+      "text": "우편번호",
+      "componentState": "default"
+    },
+    {
+      "id": "postal",
+      "region": "main",
+      "role": "input",
+      "text": "123",
+      "componentState": "focused"
+    },
+    {
+      "id": "save",
+      "region": "main",
+      "role": "button",
+      "text": "배송지 저장",
+      "componentState": "default"
+    },
+    {
+      "id": "cancel",
+      "region": "main",
+      "role": "button",
+      "text": "취소",
+      "componentState": "default"
+    }
+  ],
+  "purpose": "배송지 입력 폼. 기존 입력을 보존하며 우편번호 오류를 수정하는 화면.",
+  "theme": {
+    "canvas": "#F6F8FB",
+    "surface": "#FFFFFF",
+    "text": "#172B4D",
+    "accent": "#2563EB",
+    "border": "#DCE3ED"
+  },
+  "brief": {
+    "audience": "온라인 상점 구매자",
+    "userTask": "잘못 입력한 우편번호를 수정하고 배송지를 저장한다",
+    "primaryAction": "save",
+    "density": "comfortable"
+  }
+}

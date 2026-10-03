@@ -1,0 +1,16 @@
+[package]
+name = "promptgen-codex"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+description = "Codex image generation process and artifact adapter"
+
+[dependencies]
+promptgen-core = { path = "../promptgen-core" }
+
+[lib]
+path = "src/lib.rs"
+
+[lints]
+workspace = true

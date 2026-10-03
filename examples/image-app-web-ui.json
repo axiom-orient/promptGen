@@ -1,0 +1,123 @@
+{
+  "language": "ko",
+  "use_case": "responsive app, web, and agent workspace screen concept for a coffee subscription service",
+  "medium": "graphic_design",
+  "taxonomy": {
+    "category": "C6"
+  },
+  "scene": {
+    "environment": "one flat desktop viewport filling the entire canvas",
+    "background": "opaque light neutral canvas behind the interface",
+    "atmosphere": "calm workspace with explicit hierarchy and visible interaction state",
+    "time_of_day": null,
+    "weather": null
+  },
+  "subjects": [
+    {
+      "id": "workspace_screen",
+      "count": 1,
+      "description": "responsive coffee subscription workspace screen with sidebar navigation blocks, status cards, repeated row geometry, and one primary action control",
+      "placement": {
+        "zone": "center"
+      },
+      "scale": "screen fills 100% of canvas",
+      "pose": "front-facing screen plane",
+      "gaze": "not applicable",
+      "action": "static textless placeholder layout with no represented records",
+      "appearance": "neutral white surfaces, dark neutral contrast, green success state",
+      "distinguishing_features": [
+        "sidebar navigation",
+        "status card row",
+        "abstract repeated rows without copy",
+        "one primary call to action"
+      ]
+    }
+  ],
+  "composition": {
+    "framing": "single 3:2 desktop viewport filling the canvas",
+    "viewpoint": "straight-on screen capture",
+    "camera_angle": "parallel to interface plane",
+    "balance": "sidebar anchors left, content grid reads left to right",
+    "visual_hierarchy": [
+      "workspace_screen"
+    ],
+    "depth_layers": [
+      "opaque interface canvas",
+      "interface components"
+    ],
+    "negative_space": [
+      "top_right"
+    ]
+  },
+  "camera": null,
+  "lighting": {
+    "key_direction": "캔버스 전체에 동일한 정면 명도",
+    "key_quality": "색면 내부 명도 편차 0%의 균일한 평면",
+    "key_temperature_kelvin": null,
+    "key_color_hex": null,
+    "key_to_fill_ratio": null,
+    "fill_description": "모든 색면이 지정 HEX와 동일한 균일 명도를 유지",
+    "rim_description": null,
+    "shadow_character": "각 요소 경계는 그림자 대신 1px 이하의 선명한 색상 전이",
+    "exposure": "consistent flat UI luminance and legible component boundaries"
+  },
+  "color": {
+    "palette": [
+      {
+        "hex": "#F3F5F2",
+        "usage": "light neutral canvas 72%",
+        "proportion_percent": 72
+      },
+      {
+        "hex": "#FFFFFF",
+        "usage": "white component surfaces 18%",
+        "proportion_percent": 18
+      },
+      {
+        "hex": "#2563EB",
+        "usage": "blue primary controls 10%",
+        "proportion_percent": 10
+      }
+    ],
+    "harmony": "light neutral surfaces with blue primary controls",
+    "contrast": "dark boundaries on light neutral surfaces",
+    "saturation": "blue accents only",
+    "photo_lut": null
+  },
+  "surfaces": [
+    {
+      "id": "workspace_surface",
+      "material": "digital interface surface",
+      "finish": "평면 무광",
+      "micro_detail": "uniform digital color with no physical texture",
+      "light_response": "flat digital colors without material reflections"
+    }
+  ],
+  "text_elements": [],
+  "constraints": {
+    "required_elements": [
+      "visual grid and reading order",
+      "visible component boundaries",
+      "one coherent interface state",
+      "no readable text, numerals, pseudo-writing, invented data, or charts"
+    ],
+    "excluded_elements": [
+      "invented brand logo",
+      "readable text, numerals, pseudo-writing, invented data, and charts",
+      "decorative clutter"
+    ],
+    "safety_tier": 0,
+    "adult_subjects_only": false,
+    "original_characters_only": false,
+    "clean_unbranded_finish": true
+  },
+  "output": {
+    "width": 1536,
+    "height": 1024,
+    "background": "opaque",
+    "format": "png",
+    "backend": "codex-subscription",
+    "detail": "high"
+  },
+  "profile": "app_web_ui"
+}

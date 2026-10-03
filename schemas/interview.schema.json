@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "answers": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "propertyNames": {
+        "enum": [
+          "image.adult_editorial_confirm",
+          "image.app_icon_concept",
+          "image.aspect_ratio",
+          "image.brand_applications",
+          "image.campaign_plan",
+          "image.card_plan",
+          "image.category",
+          "image.character_sheet",
+          "image.collage_plan",
+          "image.composition",
+          "image.deck_plan",
+          "image.exclusions",
+          "image.face",
+          "image.formulation",
+          "image.hair",
+          "image.icon_set",
+          "image.information_plan",
+          "image.keyart_plan",
+          "image.lighting",
+          "image.lighting_detail",
+          "image.lut",
+          "image.medium",
+          "image.meta_ui_plan",
+          "image.occlusion_plan",
+          "image.palette",
+          "image.panel_plan",
+          "image.product_guide",
+          "image.profile",
+          "image.detail",
+          "image.scene",
+          "image.series_plan",
+          "image.stage_plan",
+          "image.storyboard_plan",
+          "image.subject",
+          "image.surface",
+          "image.text",
+          "image.text_mode",
+          "image.text_position",
+          "image.text_style",
+          "image.variants",
+          "image.visual_controls",
+          "image.task_mode",
+          "image.reference_description",
+          "image.preserve",
+          "image.change_only",
+          "image.wardrobe",
+          "language"
+        ]
+      },
+      "type": "object"
+    },
+    "brief": {
+      "minLength": 1,
+      "pattern": "\\S",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "image"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "kind",
+    "brief"
+  ],
+  "title": "promptGen guided interview request",
+  "type": "object"
+}

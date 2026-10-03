@@ -1,0 +1,183 @@
+{
+  "language": "ko",
+  "use_case": "스페셜티 커피 브랜드의 세로형 에디토리얼 캠페인 키비주얼",
+  "medium": "photo",
+  "taxonomy": {
+    "category": "C5"
+  },
+  "scene": {
+    "environment": "오전의 조용한 콘크리트 로스터리 내부, 창가의 원목 테이블 한 개",
+    "background": "후면 60%는 미세한 기공이 보이는 중간 회색 콘크리트 벽, 오른쪽 후경에 흐릿한 황동 로스터 실루엣",
+    "atmosphere": "정렬된 수직선과 넓은 상단 여백이 만드는 낮은 시각 밀도",
+    "time_of_day": "오전 9시 무렵",
+    "weather": "얇은 구름을 통과한 확산 일광"
+  },
+  "subjects": [
+    {
+      "id": "coffee_cup",
+      "count": 1,
+      "description": "무광 아이보리 도자기 컵에 담긴 짙은 필터 커피, 표면에 작은 타원형 하이라이트",
+      "placement": {
+        "zone": "custom",
+        "x_percent": 38,
+        "y_percent": 48,
+        "width_percent": 28,
+        "height_percent": 30
+      },
+      "scale": "컵 높이는 캔버스 높이의 25%",
+      "pose": "테이블 면에 수직으로 놓이고 손잡이는 화면 오른쪽 3시 방향",
+      "gaze": "정면에서 컵의 타원형 입구가 18% 보임",
+      "action": "커피 표면에서 폭 12mm 이하의 옅은 증기 두 줄기가 수직 상승",
+      "appearance": "아이보리 무광 유약과 얇고 균일한 컵 가장자리",
+      "distinguishing_features": [
+        "컵 외벽은 문자와 표식이 없는 연속된 아이보리 면",
+        "손잡이 안쪽 음영에서도 유약 표면이 식별됨"
+      ]
+    },
+    {
+      "id": "beans",
+      "count": 9,
+      "description": "중간 배전 원두 정확히 9알",
+      "placement": {
+        "zone": "custom",
+        "x_percent": 24,
+        "y_percent": 70,
+        "width_percent": 52,
+        "height_percent": 20
+      },
+      "scale": "각 원두 길이는 컵 높이의 7%",
+      "pose": "하단 중앙에서 3행 3열의 느슨한 비대칭 군집을 이루며 서로 겹치지 않고 8mm 이상 간격을 유지",
+      "gaze": "각 원두의 중앙 홈이 카메라 쪽으로 30도 이내 회전",
+      "action": "정지",
+      "appearance": "건조한 짙은 갈색 표면과 미세한 주름",
+      "distinguishing_features": [
+        "수량은 정확히 9알"
+      ]
+    }
+  ],
+  "composition": {
+    "framing": "세로형 정물 미디엄 클로즈업, 테이블 전면 모서리까지 포함",
+    "viewpoint": "테이블 면보다 18cm 높은 관찰 시점",
+    "camera_angle": "수평선에서 아래로 12도",
+    "balance": "컵 중심을 캔버스 중심보다 너비의 3% 오른쪽에 두고 상단 30%를 비움",
+    "visual_hierarchy": [
+      "coffee_cup",
+      "beans"
+    ],
+    "depth_layers": [
+      "전경은 원두와 월넛 테이블 결",
+      "중경은 커피 컵과 증기",
+      "후경은 콘크리트 벽과 황동 로스터 실루엣"
+    ],
+    "negative_space": [
+      "top_left",
+      "top_center"
+    ]
+  },
+  "camera": {
+    "field_of_view": "표준 시야, 컵과 테이블의 수직선에 배럴 왜곡이 보이지 않음",
+    "perspective": "전경 원두가 컵보다 과장되지 않는 자연 원근",
+    "depth_of_field": "컵 전체와 전면 원두는 선명하고 후경은 윤곽만 식별되는 흐림",
+    "focus": "컵 앞쪽 테두리와 커피 액체 경계에 초점면 고정",
+    "motion_rendering": "고정 촬영, 증기만 반투명한 2개 곡선 궤적"
+  },
+  "lighting": {
+    "key_direction": "화면 왼쪽 상단 10시 방향에서 오른쪽 아래로",
+    "key_quality": "폭이 넓고 가장자리 전이가 25mm 이상인 확산 하이라이트",
+    "key_temperature_kelvin": 5200,
+    "key_color_hex": "#F3D9B5",
+    "key_to_fill_ratio": 3.0,
+    "fill_description": "카메라 오른쪽 중성 회색 반사광이 그림자 내부 목재 결을 유지",
+    "rim_description": "후면 오른쪽에서 컵 손잡이 외곽에 폭 2mm의 따뜻한 림",
+    "shadow_character": "컵 바닥 접점에서 시작해 오른쪽으로 14cm 이어지는 부드러운 그림자",
+    "exposure": "아이보리 밝은 면의 세부를 보존하고 커피 액체는 짙은 갈색 층을 유지"
+  },
+  "color": {
+    "palette": [
+      {
+        "hex": "#D9CDB8",
+        "usage": "컵과 밝은 중간톤",
+        "proportion_percent": 35
+      },
+      {
+        "hex": "#6B655F",
+        "usage": "콘크리트 배경",
+        "proportion_percent": 30
+      },
+      {
+        "hex": "#5B351F",
+        "usage": "커피와 원두",
+        "proportion_percent": 20
+      },
+      {
+        "hex": "#A87945",
+        "usage": "원목과 황동 포인트",
+        "proportion_percent": 15
+      }
+    ],
+    "harmony": "따뜻한 갈색과 중성 회색의 근접 색상군, 황동은 면적 15% 이하",
+    "contrast": "컵 외곽과 배경 사이 명도 차이를 20% 이상 유지",
+    "saturation": "전체 색상은 기준 채도의 84%, 황동 하이라이트만 90%",
+    "photo_lut": {
+      "preset": "warm_pastel_filmic",
+      "strength_percent": 72,
+      "white_balance_kelvin": 5100,
+      "tint": "slight_magenta",
+      "tone_curve": "gentle_s_curve",
+      "black_response": "lifted",
+      "contrast": "low",
+      "saturation_percent": 84,
+      "shadow_bias_hex": "#66727A",
+      "highlight_bias_hex": "#E7B982",
+      "highlight_rolloff": "soft",
+      "skin_tone_policy": "not_applicable",
+      "grain_size": "fine",
+      "grain_amount_percent": 9,
+      "halation_percent": 3,
+      "vignette_percent": 2
+    }
+  },
+  "surfaces": [
+    {
+      "id": "cup_surface",
+      "material": "고밀도 아이보리 도자기",
+      "finish": "무광 유약",
+      "micro_detail": "0.2mm 이하의 미세한 유약 요철",
+      "light_response": "폭이 넓은 확산 반사와 낮은 강도의 접선 하이라이트"
+    },
+    {
+      "id": "table_surface",
+      "material": "오일 마감 월넛 원목",
+      "finish": "반무광",
+      "micro_detail": "세로 방향의 가는 목재 도관",
+      "light_response": "접선 각도에서 폭 20mm의 약한 반사"
+    }
+  ],
+  "text_elements": [],
+  "constraints": {
+    "required_elements": [
+      "컵 1개와 원두 정확히 9알",
+      "9알 모두 하단 중앙의 지정 영역 안에서 3행 3열 군집을 이룸",
+      "손잡이는 화면 오른쪽",
+      "실제 촬영 가능한 광학 및 재질 반응"
+    ],
+    "excluded_elements": [
+      "읽을 수 있는 문자",
+      "브랜드 표식",
+      "추가 식기",
+      "불투명한 안개"
+    ],
+    "safety_tier": 0,
+    "adult_subjects_only": false,
+    "original_characters_only": false,
+    "clean_unbranded_finish": true
+  },
+  "output": {
+    "width": 1024,
+    "height": 1536,
+    "background": "opaque",
+    "format": "png",
+    "backend": "codex-subscription",
+    "detail": "high"
+  }
+}

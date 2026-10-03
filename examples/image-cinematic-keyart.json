@@ -1,0 +1,164 @@
+{
+  "language": "ko",
+  "use_case": "무협 액션 게임의 시네마틱 키비주얼",
+  "medium": "illustration",
+  "taxonomy": {
+    "category": "C11"
+  },
+  "scene": {
+    "environment": "바다를 내려다보는 절벽 위 돌 축대의 끝, 오른쪽 아래로 해안선이 이어짐",
+    "background": "수평선 위로 낮게 깔린 층운과 붉게 물든 하늘, 우측 원경에 작은 탑과 범선 실루엣",
+    "atmosphere": "바람에 깃발과 망토가 한 방향으로 밀리는 정적인 긴장",
+    "time_of_day": "해가 수평선에 3분의 1쯤 걸린 일몰 직전",
+    "weather": "옅은 해무와 흩날리는 붉은 꽃잎"
+  },
+  "subjects": [
+    {
+      "id": "ronin",
+      "count": 1,
+      "description": "검은 단발의 무사 1명, 남색 갑주 위에 붉은 망토를 두름",
+      "placement": {
+        "zone": "custom",
+        "x_percent": 18,
+        "y_percent": 20,
+        "width_percent": 26,
+        "height_percent": 68
+      },
+      "scale": "인물 전신 높이는 캔버스 높이의 68%",
+      "pose": "카메라를 등지고 수평선을 향해 선 자세, 오른손의 검은 지면과 30도로 내려짐",
+      "gaze": "정면 수평선 방향, 얼굴은 우측 4분의 1만 보임",
+      "action": "정지 상태에서 망토 자락과 머리카락만 왼쪽에서 오른쪽으로 흩날림",
+      "appearance": "판금과 가죽이 겹친 남색 갑주, 가장자리가 해진 붉은 망토, 무릎까지 오는 각반",
+      "distinguishing_features": [
+        "망토 등판 중앙에 흰색 나침반형 문양 1개",
+        "칼집이 아닌 뽑힌 검을 오른손에 쥠"
+      ]
+    },
+    {
+      "id": "banner",
+      "count": 1,
+      "description": "인물 왼쪽 뒤의 세로형 전투 깃발 1개",
+      "placement": {
+        "zone": "custom",
+        "x_percent": 2,
+        "y_percent": 4,
+        "width_percent": 14,
+        "height_percent": 52
+      },
+      "scale": "깃대 높이는 캔버스 높이의 52%",
+      "pose": "수직으로 서고 깃폭은 오른쪽으로 펄럭임",
+      "gaze": "깃폭 정면이 카메라를 향함",
+      "action": "아랫단이 찢겨 세 갈래로 나부낌",
+      "appearance": "탈색된 미색 천에 검은 먹으로 쓴 세로 문자",
+      "distinguishing_features": [
+        "깃폭 상단에 원형 가문 문양 1개"
+      ]
+    }
+  ],
+  "composition": {
+    "framing": "정사각 와이드 풀샷, 인물은 좌측 3분의 1 지점",
+    "viewpoint": "인물 어깨 높이보다 약간 높은 관찰 시점",
+    "camera_angle": "수평선에서 아래로 5도",
+    "balance": "좌측 인물·깃발 덩어리와 우측 해안선의 시각 무게를 6대 4로 배분",
+    "visual_hierarchy": [
+      "ronin",
+      "banner"
+    ],
+    "depth_layers": [
+      "전경은 절벽 돌 축대와 흩날리는 꽃잎",
+      "중경은 인물과 깃발",
+      "후경은 바다·해안선·구름"
+    ],
+    "negative_space": [
+      "top_center",
+      "middle_right"
+    ]
+  },
+  "camera": {
+    "field_of_view": "표준 광각, 수직선 왜곡 없음",
+    "perspective": "전경 돌 축대가 과장되지 않는 자연 원근",
+    "depth_of_field": "인물부터 수평선까지 전체 선명",
+    "focus": "인물 등판 문양과 검신에 초점",
+    "motion_rendering": "고정 화면, 망토·깃발·꽃잎만 방향성 있는 흐름"
+  },
+  "lighting": {
+    "key_direction": "정면 수평선의 태양에서 카메라 쪽으로 역광",
+    "key_quality": "수면 반사로 넓게 퍼지는 저각 확산광",
+    "key_temperature_kelvin": 2400,
+    "key_color_hex": "#FF9A3C",
+    "key_to_fill_ratio": 4.0,
+    "fill_description": "하늘 상단의 자주빛 반사광이 갑주 좌측면을 낮은 강도로 채움",
+    "rim_description": "인물 어깨와 검신 상단에 폭 3px의 주황 림라이트",
+    "shadow_character": "인물과 깃대는 카메라 쪽으로 길게 떨어지는 실루엣 그림자",
+    "exposure": "태양 주변 하이라이트는 유지하고 갑주 암부는 형태가 식별되는 수준"
+  },
+  "color": {
+    "palette": [
+      {
+        "hex": "#F4713B",
+        "usage": "하늘과 태양 주변",
+        "proportion_percent": 34
+      },
+      {
+        "hex": "#1E3A63",
+        "usage": "바다와 갑주",
+        "proportion_percent": 30
+      },
+      {
+        "hex": "#B3352C",
+        "usage": "망토와 꽃잎",
+        "proportion_percent": 20
+      },
+      {
+        "hex": "#6B4E7A",
+        "usage": "상단 하늘과 구름 음영",
+        "proportion_percent": 16
+      }
+    ],
+    "harmony": "주황과 남색의 보색 대비, 자주는 두 색의 전이 구간에만 사용",
+    "contrast": "인물 실루엣과 하늘 사이 명도 차이를 45% 이상 유지",
+    "saturation": "하늘은 기준 채도의 95%, 갑주 암부는 70%"
+  },
+  "surfaces": [
+    {
+      "id": "armor",
+      "material": "옻칠 판금과 가죽 끈",
+      "finish": "반광",
+      "micro_detail": "판금 가장자리의 미세한 흠집과 끈의 짜임",
+      "light_response": "역광에서 가장자리에만 좁은 반사"
+    },
+    {
+      "id": "cliff_stone",
+      "material": "풍화된 사암 블록",
+      "finish": "무광",
+      "micro_detail": "블록 이음새의 이끼와 잔금",
+      "light_response": "접선광에서 표면 요철이 드러남"
+    }
+  ],
+  "text_elements": [],
+  "constraints": {
+    "required_elements": [
+      "무사 1명과 깃발 1개",
+      "수평선에 걸린 태양 1개",
+      "오른손에 뽑힌 검"
+    ],
+    "excluded_elements": [
+      "읽을 수 있는 현대 문자",
+      "브랜드 표식",
+      "추가 인물",
+      "총기"
+    ],
+    "safety_tier": 0,
+    "adult_subjects_only": false,
+    "original_characters_only": true,
+    "clean_unbranded_finish": true
+  },
+  "output": {
+    "width": 1024,
+    "height": 1024,
+    "background": "opaque",
+    "format": "png",
+    "backend": "codex-subscription",
+    "detail": "high"
+  }
+}

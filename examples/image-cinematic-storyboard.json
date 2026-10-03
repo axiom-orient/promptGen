@@ -1,0 +1,206 @@
+{
+  "language": "ko",
+  "render_profile": "cinematic_storyboard",
+  "use_case": "기획자와 디자이너가 텍스트 없이 인물의 감정 전환, 시선선, 화면 방향, 샷 구도를 함께 검토하는 애니메이션 장면 스토리보드",
+  "medium": "illustration",
+  "taxonomy": {
+    "category": "C10"
+  },
+  "scene": {
+    "environment": "비가 갠 저녁의 오래된 기차역 승강장",
+    "background": "왼쪽에서 오른쪽으로 이어지는 젖은 철로, 멀리 따뜻한 역 창문 불빛과 흐린 보랏빛 하늘",
+    "atmosphere": "고요한 기대에서 결심으로 바뀌는 순간, 빗물 반사와 미세한 바람",
+    "time_of_day": "해진 직후의 블루아워",
+    "weather": "비는 막 그쳤고 가는 안개가 철로 위에 남아 있음"
+  },
+  "subjects": [
+    {
+      "id": "mina",
+      "count": 1,
+      "description": "오리지널 성인 애니메이션 여주인공 민아 1명",
+      "placement": {
+        "zone": "center"
+      },
+      "scale": "패널별 구도에 맞춰 전신에서 얼굴 클로즈업까지 변화",
+      "pose": "마른 체형, 오른손으로 접힌 편지를 가슴 높이에 들고, 어깨는 화면 오른쪽을 향함",
+      "gaze": "패널 계획에 따라 화면 오른쪽의 오프스크린 열차 또는 편지로 연결",
+      "action": "발견하고, 멈추고, 결심하는 세 단계의 조용한 행동",
+      "face": "둥근 눈매, 왼쪽 눈 아래 작은 점, 차분하지만 감정을 억누른 표정",
+      "hair": "짙은 남색의 짧은 단발, 오른쪽 귀 뒤에 노란 머리핀 하나",
+      "appearance": "크림색 트렌치코트, 회색 스커트, 검정 앵클부츠, 붉은 우산 손잡이가 가방에서 보임",
+      "distinguishing_features": [
+        "접힌 아이보리 편지와 파란 우표",
+        "오른쪽 귀 뒤의 노란 머리핀",
+        "코트 안쪽의 짙은 청록색 안감"
+      ]
+    }
+  ],
+  "composition": {
+    "framing": "가로형 3패널 스트립, 모든 패널은 같은 높이와 균일한 여백",
+    "viewpoint": "카메라는 승강장과 철로의 같은 쪽에 머물며 인물의 화면 오른쪽 진행을 유지",
+    "camera_angle": "첫 패널의 공간 설정에서 마지막 얼굴 클로즈업까지 축을 넘지 않는 아이레벨 연속",
+    "balance": "왼쪽의 빈 철로와 오른쪽의 민아·열차 도착 방향이 시선을 연결",
+    "visual_hierarchy": [
+      "mina"
+    ],
+    "depth_layers": [
+      "젖은 승강장 전경",
+      "민아와 편지 중경",
+      "철로·역 창문·안개 후경"
+    ],
+    "negative_space": [
+      "top_left"
+    ]
+  },
+  "storyboard": {
+    "layout": "three_panel_strip",
+    "screen_direction": "left_to_right",
+    "identity_anchors": [
+      "짙은 남색 단발과 오른쪽 귀 뒤 노란 머리핀",
+      "크림색 트렌치코트와 청록색 안감",
+      "접힌 아이보리 편지와 파란 우표",
+      "젖은 승강장·왼쪽에서 오른쪽으로 이어지는 철로",
+      "보랏빛 블루아워와 따뜻한 창문 불빛"
+    ],
+    "panels": [
+      {
+        "id": "arrival-space",
+        "shot_size": "establishing",
+        "camera_angle": "아이레벨의 넓은 24mm 설정 샷, 민아는 화면 중앙 왼쪽, 철로는 오른쪽 원경으로 수렴",
+        "camera_move": "고정, 다음 패널을 위한 오른쪽 진행 여백 유지",
+        "action": "민아가 승강장에 멈춰 멀리서 들리는 열차 소리를 듣는다",
+        "body_facing": "screen_right",
+        "gaze_target": "offscreen_right",
+        "emotional_beat": "기대가 막 생기는 정적"
+      },
+      {
+        "id": "letter-realization",
+        "shot_size": "medium_close_up",
+        "camera_angle": "같은 축의 50mm 3/4 측면, 민아와 편지가 프레임 오른쪽을 향하고 배경 철로는 부드럽게 이어짐",
+        "camera_move": "이전 와이드에서 자연스럽게 가까워진 정지 프레임",
+        "action": "민아가 편지의 파란 우표를 보고 손가락으로 가장자리를 쥔다",
+        "body_facing": "three_quarter_right",
+        "gaze_target": "object_in_frame",
+        "emotional_beat": "기억을 알아차리는 미세한 흔들림"
+      },
+      {
+        "id": "decision-gaze",
+        "shot_size": "close_up",
+        "camera_angle": "같은 축의 85mm 얼굴 클로즈업, 편지 가장자리는 전경 하단에만 보이고 오른쪽 여백으로 시선이 빠짐",
+        "camera_move": "정지, 시선의 종착점을 화면 밖 열차 방향으로 남김",
+        "action": "민아가 고개를 조금 들어 열차가 올 화면 오른쪽을 바라본다",
+        "body_facing": "three_quarter_right",
+        "gaze_target": "offscreen_right",
+        "emotional_beat": "망설임을 끝내고 조용히 결심함"
+      }
+    ]
+  },
+  "consistency": {
+    "dimensions": [
+      "multi_view",
+      "character",
+      "temporal",
+      "semantic"
+    ],
+    "shared_anchors": [
+      "짙은 남색 단발과 오른쪽 귀 뒤 노란 머리핀",
+      "크림색 트렌치코트와 청록색 안감",
+      "접힌 아이보리 편지와 파란 우표",
+      "젖은 승강장·왼쪽에서 오른쪽으로 이어지는 철로",
+      "보랏빛 블루아워와 따뜻한 창문 불빛"
+    ],
+    "sequence": {
+      "steps": [
+        "arrival-space",
+        "letter-realization",
+        "decision-gaze"
+      ],
+      "condition_on_previous": true
+    }
+  },
+  "camera": {
+    "field_of_view": "패널별 24mm·50mm·85mm의 명확한 샷 래더, 과장된 왜곡 없음",
+    "perspective": "모든 패널은 승강장 같은 쪽에서 찍은 자연 원근, 180도 축을 넘지 않음",
+    "depth_of_field": "설정 샷은 공간을 읽을 만큼 선명, 감정 샷으로 갈수록 배경은 부드러움",
+    "focus": "민아의 얼굴, 편지, 그리고 화면 오른쪽 오프스크린 목적지의 연결",
+    "motion_rendering": "정지 이미지이며 카메라 이동 화살표·속도선·텍스트 주석은 없음"
+  },
+  "lighting": {
+    "key_direction": "화면 오른쪽 역 창문과 다가오는 열차 방향의 따뜻한 측면광",
+    "key_quality": "비 갠 저녁의 넓고 부드러운 확산광",
+    "key_temperature_kelvin": 3800,
+    "key_color_hex": "#E7B16B",
+    "key_to_fill_ratio": 2.0,
+    "fill_description": "보랏빛 하늘 반사가 그림자 쪽 코트와 피부를 부드럽게 채움",
+    "rim_description": "젖은 머리카락과 코트 오른쪽 어깨에 가는 따뜻한 림라이트",
+    "shadow_character": "빗물 반사로 가장자리가 부드러운 짧은 그림자",
+    "exposure": "따뜻한 창문 불빛은 번지지 않고, 얼굴 표정과 편지 우표는 식별 가능"
+  },
+  "color": {
+    "palette": [
+      {
+        "hex": "#605B88",
+        "usage": "블루아워 하늘과 그림자",
+        "proportion_percent": 30
+      },
+      {
+        "hex": "#E7B16B",
+        "usage": "역 창문과 림라이트",
+        "proportion_percent": 20
+      },
+      {
+        "hex": "#E8DDC7",
+        "usage": "트렌치코트와 편지",
+        "proportion_percent": 30
+      },
+      {
+        "hex": "#173F4A",
+        "usage": "머리카락·코트 안감·철로 깊이",
+        "proportion_percent": 20
+      }
+    ],
+    "harmony": "차가운 보라·청록 환경과 따뜻한 창문빛의 절제된 보색 대비",
+    "contrast": "얼굴과 편지는 배경보다 명도 대비를 유지하되 멜로드라마틱한 과노출 금지",
+    "saturation": "비 갠 배경은 낮은 채도, 노란 머리핀과 파란 우표만 작은 포인트"
+  },
+  "surfaces": [
+    {
+      "id": "wet_platform",
+      "material": "비에 젖은 콘크리트와 철로",
+      "finish": "젖은 반광",
+      "micro_detail": "얇은 물웅덩이와 작은 빗방울 자국",
+      "light_response": "창문빛이 길게 번지되 인물 실루엣은 흐리지 않음"
+    }
+  ],
+  "text_elements": [],
+  "constraints": {
+    "required_elements": [
+      "동일한 민아가 3패널에 각각 한 번씩 등장",
+      "편지·머리핀·코트·승강장 축의 연속성",
+      "와이드→미디엄 클로즈업→클로즈업의 감정 샷 래더"
+    ],
+    "excluded_elements": [
+      "패널 번호",
+      "캡션",
+      "말풍선",
+      "대사",
+      "로고",
+      "워터마크",
+      "UI",
+      "의사문자",
+      "추가 인물"
+    ],
+    "safety_tier": 0,
+    "adult_subjects_only": false,
+    "original_characters_only": true,
+    "clean_unbranded_finish": true
+  },
+  "output": {
+    "width": 1536,
+    "height": 1024,
+    "background": "opaque",
+    "format": "png",
+    "backend": "codex-subscription",
+    "detail": "high"
+  }
+}
