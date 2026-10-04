@@ -24,6 +24,7 @@
 | [IMAGE_STUDIO_UX_SPEC](IMAGE_STUDIO_UX_SPEC.md) | Studio의 사용자 결정·결과 귀속 |
 | [DESIGN](DESIGN.md) | 소스·테스트가 참조하는 시각·접근성 조항 |
 | [IMAGE_INTERVIEW_SCENARIOS](IMAGE_INTERVIEW_SCENARIOS.md) | 대표 route와 상태 회귀 수용 기준 |
+| [CLI](../crates/promptgen-cli/README.md) | workspace 버전·빌드·시작·명령·입출력·검증 |
 | [MCP](MCP.md) | MCP client·운영자의 연결·metadata·도구·오류 |
 | [RUNTIME_STORAGE](RUNTIME_STORAGE.md) | 사용자 입력·결과·임시 파일·삭제 운영 |
 | [SECURITY](../SECURITY.md) | 신뢰 경계·방어·알려진 한계·문제 보고 |

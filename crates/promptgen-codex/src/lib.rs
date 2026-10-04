@@ -1680,6 +1680,7 @@ impl OwnedChild {
         })
     }
 
+    #[cfg(target_os = "macos")]
     fn wait(&mut self, timeout: Duration) -> Result<ExitStatus, CodexExecutionError> {
         self.wait_with_file_limits(timeout, &[])
     }

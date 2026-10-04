@@ -3,8 +3,7 @@
 //! `cargo` proves the code builds and behaves; it cannot prove the prose still points at
 //! files that exist, or that the version stated in the docs, `REVISION`, and the packaging
 //! script have not drifted apart. These checks used to live in an external Python script, so
-//! they only ran when someone remembered to invoke it. Here they run with `cargo test`, which
-//! is the only gate a zero-dependency Rust workspace should need.
+//! they only ran when someone remembered to invoke it. Here they run with `cargo test`.
 
 use std::collections::BTreeSet;
 use std::fs;
@@ -34,6 +33,7 @@ fn workspace_version(root: &Path) -> String {
 fn authored_documents(root: &Path) -> Vec<PathBuf> {
     let mut documents = vec![
         root.join("README.md"),
+        root.join("crates/promptgen-cli/README.md"),
         root.join("NOTICE.md"),
         root.join("SECURITY.md"),
     ];
@@ -76,7 +76,7 @@ fn local_link_targets(text: &str) -> Vec<String> {
 }
 
 #[test]
-fn revision_and_readme_state_the_workspace_version() {
+fn revision_and_cli_document_state_the_workspace_version() {
     let root = repo_root();
     let version = workspace_version(&root);
 
@@ -87,10 +87,13 @@ fn revision_and_readme_state_the_workspace_version() {
         "REVISION {revision:?} does not match workspace version {version}"
     );
 
-    let readme = fs::read_to_string(root.join("README.md")).expect("readable README");
+    let cli_document = fs::read_to_string(root.join("crates/promptgen-cli/README.md"))
+        .expect("readable CLI contract");
     assert!(
-        readme.contains(&version),
-        "README.md does not state version {version}"
+        cli_document
+            .lines()
+            .any(|line| line == format!("# promptgen-cli {version}")),
+        "crates/promptgen-cli/README.md does not state version {version} in its title"
     );
 }
 
