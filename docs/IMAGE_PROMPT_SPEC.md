@@ -56,7 +56,7 @@ compiler-owned section은 reference → change/preserve → 해당 pose/storyboa
 2. "SIGNAL"
 ```
 
-철자·행 순서·placement·글꼴 계열·size·color·선택 spelling hint를 구별한다.
+각 인용 행의 철자·Unicode 공백·행 순서·placement·글꼴 계열·size·color·선택 spelling hint를 구별한다. 원문 행 안의 공백과 줄 사이 경계는 컴파일 중 바꾸지 않는다.
 절개선·분리 간격을 요구하는 text treatment는 `separator_count`(0–8)를 각 줄의 정본 숫자로 선언한다. 3개 간격은 4개 조각과 다르다. 실행 검수는 원하는 숫자를 보여주지 않는 문자 영역 관찰에서 실제 간격 수를 읽고 로컬 코드가 선언값과 비교한다.
 무문구 요청은 읽히는 text·logo·watermark를 제외한다. 사용자가 제공하지 않은 문구를 자연스럽다는 이유로 추가하지 않는다.
 

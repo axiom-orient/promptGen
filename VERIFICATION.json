@@ -3,7 +3,7 @@
   "scope": "local gate: check/test/fmt/clippy/doc/build/maintained audits/CLI/web smoke",
   "status": "CURRENT_LOCAL_GATE_COMPLETED",
   "revision": "promptgen-5.0.0-20261003.2",
-  "source_tree_sha256": "8ee7b4dc5e28a0c28c2ae1ef19904be734a2606a319e85b7b69be20d4265c906",
+  "source_tree_sha256": "b366c0d4f8d59129373d4d417f42be10a7b4e225323f11c1041f7208dc197b4c",
   "checks": [
     {
       "command": "bash scripts/verify.sh",

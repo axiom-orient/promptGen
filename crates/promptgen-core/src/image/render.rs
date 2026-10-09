@@ -1,5 +1,6 @@
 use crate::catalog::{CatalogEntry, DirectiveSlot, text_guard_is_repetition_aware};
 use crate::common::{PromptLanguage, heading, label, quote};
+use crate::json::JsonValue;
 
 use super::lut::{ResolvedPhotoLut, resolve_photo_lut};
 use super::model::{
@@ -989,7 +990,11 @@ fn render_exact_text_section(
             )
         ));
         for (index, line) in element.lines.iter().enumerate() {
-            text.push(format!("    {}. {}", index + 1, quote(line)));
+            text.push(format!(
+                "    {}. {}",
+                index + 1,
+                JsonValue::from(line.as_str()).to_compact_string()
+            ));
         }
         if let Some(spelling_hint) = &element.spelling_hint {
             text.push(format!(

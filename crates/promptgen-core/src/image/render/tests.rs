@@ -6,7 +6,7 @@ use crate::diagnostic::Severity;
 use crate::image::compile_image_prompt;
 use crate::image::model::ImagePromptRequest;
 use crate::image::validate::validate_image_request;
-use crate::json::parse;
+use crate::json::{JsonValue, parse};
 
 #[test]
 fn rendered_prompt_has_stable_section_order_and_ar_tail() {
@@ -116,6 +116,26 @@ fn exact_text_is_quoted_and_ordered() {
             < prompt.find("LIGHTING").expect("lighting"),
         "exact copy should be near the composition it controls, before lower-priority rendering detail"
     );
+}
+
+#[test]
+fn exact_text_preserves_repeated_and_nonbreaking_spaces() {
+    let mut request = ImagePromptRequest::from_json(
+        parse(include_str!(concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/../../examples/image-typography-poster.json"
+        )))
+        .expect("JSON"),
+    )
+    .expect("request");
+    request.language = PromptLanguage::English;
+    let line = "URBAN  SIGNAL\u{00a0}ARCHIVE".to_owned();
+    request.text_elements[0].lines = vec![line.clone()];
+
+    let compilation = compile_image_prompt(&request);
+    let prompt = compilation.prompt.as_deref().expect("valid compilation");
+    let exact_line = JsonValue::from(line).to_compact_string();
+    assert!(prompt.contains(&format!("1. {exact_line}")), "{prompt}");
 }
 
 #[test]
